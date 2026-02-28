@@ -90,16 +90,36 @@
 
 <script>
 const levels = [
-  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg" },
-  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg" },
-  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "deadlocked.jpg" },
-  { name: "Ispywithmylittle Eye", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg" },
-  { name: "Is", difficulty: "Easy Demon", thumbnail: "level5.jpg" },
-  { name: "Shiver", difficulty: "Easy Demon", thumbnail: "level6.jpg" },
-  { name: "Demon Mix", difficulty: "Easy Demon", thumbnail: "level7.jpg" },
-  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "level8.jpg" },
-  { name: "The Lightning Road", difficulty: "Easy Demon", thumbnail: "level9.jpg" },
-  { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "level10.jpg" }
+  {
+    name: "Skeletal Shenanigans",
+    difficulty: "Medium Demon",
+    thumbnail: "skeletal.jpg",
+    victors: ["Timur", "Kostia",]
+  },
+  {
+    name: "B",
+    difficulty: "Medium Demon",
+    thumbnail: "sddefault.jpg",
+    victors: ["Timur", "Kostia", "Leon",]
+  },
+  {
+    name: "Deadlocked",
+    difficulty: "Medium Demon",
+    thumbnail: "deadlocked.jpg",
+    victors: ["Timur", "Kostia",]
+  },
+  {
+    name: "Ispywithmylittle Eye",
+    difficulty: "Easy Demon",
+    thumbnail: "maxresdefault.jpg",
+    victors: ["Leon", "timur"]
+  },
+  {
+    name: "Shiver",
+    difficulty: "Easy Demon",
+    thumbnail: "level5.jpg",
+    victors: ["kostia", "timur",]
+  }
 ];
 
 const listContainer = document.getElementById("demonList");
@@ -110,6 +130,10 @@ levels.forEach((level, index) => {
   const div = document.createElement("div");
   div.className = "level";
 
+  const victorsHTML = level.victors
+    .map(name => "😈 " + name)
+    .join("<br>");
+
   div.innerHTML = `
     <div class="rank">#${index + 1}</div>
     <img class="thumbnail" src="${level.thumbnail}">
@@ -118,10 +142,7 @@ levels.forEach((level, index) => {
       Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
       <button onclick="toggleVictors(${index})">View Victors</button>
       <div class="victors" id="victors-${index}">
-        😈 kostianian<br>
-        😈 Player2<br>
-        😈 Player3<br>
-        😈 Player4
+        ${victorsHTML}
       </div>
     </div>
   `;
