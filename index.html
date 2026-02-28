@@ -18,8 +18,8 @@
 
     h1 {
       color: red;
-      margin: 15px 0;
-      font-size: 28px;
+      margin: 10px 0;
+      font-size: 22px;
     }
 
     .list {
@@ -27,50 +27,47 @@
       max-height: 90%;
       overflow-y: auto;
       padding-right: 10px;
-      scrollbar-width: thin; /* Firefox */
-      scrollbar-color: #00ff00 #222; /* Firefox */
+      scrollbar-width: thin;
+      scrollbar-color: #00ff00 #222;
     }
 
-    /* Chrome, Edge, Safari */
     .list::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
-
     .list::-webkit-scrollbar-track {
       background: #222;
-      border-radius: 5px;
+      border-radius: 4px;
     }
-
     .list::-webkit-scrollbar-thumb {
       background: #00ff00;
-      border-radius: 5px;
-      box-shadow: 0 0 6px #00ff00;
+      border-radius: 4px;
+      box-shadow: 0 0 4px #00ff00;
     }
 
     .level {
       background: #1e1e1e;
-      padding: 14px;
-      margin: 10px 0;
-      border-left: 5px solid red;
+      padding: 10px;
+      margin: 8px 0;
+      border-left: 4px solid red;
       display: flex;
       align-items: center;
-      border-radius: 8px;
-      gap: 15px;
+      border-radius: 6px;
+      gap: 10px;
       flex-wrap: wrap;
-      font-size: 16px;
+      font-size: 13px;
     }
 
     .thumbnail {
-      width: 120px;
-      height: 70px;
+      width: 90px;
+      height: 50px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 4px;
     }
 
     .rank {
       font-weight: bold;
-      font-size: 20px;
-      min-width: 40px;
+      font-size: 16px;
+      min-width: 30px;
     }
 
     .level-info {
@@ -82,12 +79,12 @@
       background: red;
       color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
+      padding: 4px 10px;
+      border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 14px;
-      margin-top: 6px;
+      font-size: 12px;
+      margin-top: 4px;
     }
 
     button:hover {
@@ -97,10 +94,10 @@
     .victors {
       width: 100%;
       text-align: left;
-      margin-top: 8px;
+      margin-top: 6px;
       display: none;
       color: #00ff00;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     /* Difficulty Colors */
@@ -109,6 +106,15 @@
     .hard    { color: #ff8800; font-weight: bold; }
     .medium  { color: #00bfff; font-weight: bold; }
     .easy    { color: #00ff00; font-weight: bold; }
+
+    /* Glowing crown for first victor */
+    .crown {
+      color: #00ff00;
+      text-shadow:
+        0 0 4px #00ff00,
+        0 0 8px #00ff00,
+        0 0 12px #00ff00;
+    }
   </style>
 </head>
 
@@ -142,7 +148,7 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    const crown = i === 0 ? "👑 " : "";
+    const crown = i === 0 ? "<span class='crown'>👑</span> " : "";
     return `${i+1}. ${crown}😈 ${name}`;
   }).join("<br>");
 
