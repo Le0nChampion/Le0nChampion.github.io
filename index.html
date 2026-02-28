@@ -73,10 +73,6 @@
       font-size: 14px;
     }
 
-    .victors span:first-child::before {
-      content: "👑 ";
-    }
-
     /* Difficulty Colors */
     .extreme { color: #ff0000; font-weight: bold; }
     .insane  { color: #ff00ff; font-weight: bold; }
@@ -115,10 +111,14 @@ const listContainer = document.getElementById("demonList");
 levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
+  const victorsHTML = level.victors.map((name,i) => {
+    // Add crown to first victor
+    const crown = i === 0 ? "👑 " : "";
+    return `${i+1}. ${crown}😈 ${name}`;
+  }).join("<br>");
+
   const div = document.createElement("div");
   div.className = "level";
-
-  const victorsHTML = level.victors.map((name,i) => `${i+1}. 😈 ${name}`).join("<br>");
 
   div.innerHTML = `
     <div class="rank">#${index + 1}</div>
