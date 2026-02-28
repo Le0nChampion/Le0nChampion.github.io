@@ -7,42 +7,52 @@
       background-color: #111;
       color: white;
       font-family: Arial, sans-serif;
-      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
     }
 
     h1 {
       color: red;
-      margin-top: 40px;
+      margin: 10px 0;
+      font-size: 24px;
     }
 
     .list {
       width: 90%;
-      margin: auto;
+      max-height: 90%;
+      overflow-y: auto;
+      padding-right: 10px; /* for scrollbar */
     }
 
     .level {
       background: #1e1e1e;
-      padding: 15px;
-      margin: 12px 0;
+      padding: 10px;
+      margin: 8px 0;
       border-left: 5px solid red;
       display: flex;
       align-items: center;
-      border-radius: 8px;
-      gap: 15px;
+      border-radius: 6px;
+      gap: 10px;
       flex-wrap: wrap;
+      font-size: 14px;
     }
 
     .thumbnail {
-      width: 120px;
-      height: 70px;
+      width: 100px;
+      height: 60px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 4px;
     }
 
     .rank {
       font-weight: bold;
-      font-size: 20px;
-      min-width: 40px;
+      font-size: 16px;
+      min-width: 30px;
     }
 
     .level-info {
@@ -54,10 +64,12 @@
       background: red;
       color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
+      padding: 4px 10px;
+      border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 12px;
+      margin-top: 4px;
     }
 
     button:hover {
@@ -67,10 +79,10 @@
     .victors {
       width: 100%;
       text-align: left;
-      margin-top: 10px;
+      margin-top: 6px;
       display: none;
       color: #00ff00;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     /* Difficulty Colors */
@@ -93,17 +105,17 @@ const levels = [
   { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur", "Kostia", "Leon", "Alex"] },
   { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "https://via.placeholder.com/120x70?text=3", victors: ["Timur", "Kostia", "Ethan"] },
   { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=4", victors: ["Leon", "Timur", "Kai"] },
-  { name: "Is", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=5", victors: ["Kostia", "Timur",] },
+  { name: "Is", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=5", victors: ["Kostia", "Timur"] },
   { name: "Shiver", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=6", victors: ["Kostia"] },
-  { name: "Speed Racer", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=7", victors: ["Leon",] },
-  { name: "Demon Mix", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=8", victors: ["Leon",] },
-  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=9", victors: ["Kostia",] },
+  { name: "Speed Racer", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=7", victors: ["Leon"] },
+  { name: "Demon Mix", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=8", victors: ["Leon"] },
+  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=9", victors: ["Kostia"] },
   { name: "The Lightning Road", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=10", victors: ["Kostia","Timur","Leon","Russlan"] },
   { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=11", victors: ["Kostia","Timur","Leon","Russlan"] },
   { name: "idk", difficulty: "Hard Demon", thumbnail: "https://via.placeholder.com/120x70?text=12", victors: ["Player1","Player2","Player3","Player4"] },
   { name: "idk", difficulty: "Insane Demon", thumbnail: "https://via.placeholder.com/120x70?text=13", victors: ["Player1","Player2","Player3","Player4"] },
   { name: "idk", difficulty: "Insane Demon", thumbnail: "https://via.placeholder.com/120x70?text=14", victors: ["Player1","Player2","Player3","Player4"] },
-  { name: "Stereo Madness", difficulty: "Extreme Demon", thumbnail: "https://via.placeholder.com/120x70?text=15", victors: ["Kostia","Timur","Russlan","Leon","ilja",] }
+  { name: "Stereo Madness", difficulty: "Extreme Demon", thumbnail: "https://via.placeholder.com/120x70?text=15", victors: ["Kostia","Timur","Russlan","Leon","ilja"] }
 ];
 
 const listContainer = document.getElementById("demonList");
@@ -112,7 +124,6 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    // Add crown to first victor
     const crown = i === 0 ? "👑 " : "";
     return `${i+1}. ${crown}😈 ${name}`;
   }).join("<br>");
