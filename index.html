@@ -20,6 +20,10 @@
       color: red;
       margin: 15px 0;
       font-size: 36px;
+      text-shadow:
+        0 0 8px #ff0000,
+        0 0 16px #ff0000,
+        0 0 24px #ff0000;
     }
 
     .list {
@@ -55,6 +59,13 @@
       gap: 20px;
       flex-wrap: wrap;
       font-size: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #ff0000;
+    }
+
+    .level:hover {
+      box-shadow: 0 0 16px #ff0000, 0 0 24px #ff00ff;
+      transform: scale(1.02);
     }
 
     .thumbnail {
@@ -62,12 +73,14 @@
       height: 150px;
       object-fit: cover;
       border-radius: 8px;
+      box-shadow: 0 0 8px #00ff00;
     }
 
     .rank {
       font-weight: bold;
       font-size: 28px;
       min-width: 50px;
+      text-shadow: 0 0 4px #ff0000;
     }
 
     .level-info {
@@ -85,10 +98,14 @@
       font-weight: bold;
       font-size: 18px;
       margin-top: 8px;
+      box-shadow: 0 0 8px #ff0000;
+      transition: all 0.2s ease;
     }
 
     button:hover {
       background: darkred;
+      box-shadow: 0 0 12px #ff00ff;
+      transform: scale(1.05);
     }
 
     .victors {
@@ -98,14 +115,15 @@
       display: none;
       color: #00ff00;
       font-size: 16px;
+      text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00;
     }
 
-    /* Difficulty Colors */
-    .extreme { color: #ff0000; font-weight: bold; }
-    .insane  { color: #ff00ff; font-weight: bold; }
-    .hard    { color: #ff8800; font-weight: bold; }
-    .medium  { color: #00bfff; font-weight: bold; }
-    .easy    { color: #00ff00; font-weight: bold; }
+    /* Difficulty Colors with glow */
+    .extreme { color: #ff0000; font-weight: bold; text-shadow: 0 0 4px #ff0000; }
+    .insane  { color: #ff00ff; font-weight: bold; text-shadow: 0 0 4px #ff00ff; }
+    .hard    { color: #ff8800; font-weight: bold; text-shadow: 0 0 4px #ff8800; }
+    .medium  { color: #00bfff; font-weight: bold; text-shadow: 0 0 4px #00bfff; }
+    .easy    { color: #00ff00; font-weight: bold; text-shadow: 0 0 4px #00ff00; }
 
     /* Glowing crown for first victor */
     .crown {
@@ -127,8 +145,8 @@
 const levels = [
   { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur", "Kostia", "Leon"] },
   { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur", "Kostia", "Leon", "Alex"] },
-  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "https://via.placeholder.com/270x150?text=3", victors: ["Timur", "Kostia",] },
-  { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=4", victors: ["Leon", "Timur",] },
+  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "https://via.placeholder.com/270x150?text=3", victors: ["Timur", "Kostia", "Ethan"] },
+  { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=4", victors: ["Leon", "Timur", "Kai"] },
   { name: "Is", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=5", victors: ["Kostia", "Timur"] },
   { name: "Shiver", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=6", victors: ["Kostia"] },
   { name: "Speed Racer", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=7", victors: ["Leon"] },
@@ -148,7 +166,7 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    // First victor: glowing crown + name, no demon emoji
+    // First victor: glowing crown + name, no demon
     const first = i === 0 ? `<span class='crown'>👑 ${name}</span>` : `😈 ${name}`;
     return `${i+1}. ${first}`;
   }).join("<br>");
