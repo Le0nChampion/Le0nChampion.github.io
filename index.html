@@ -1,16 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Class Demon List</title>
-  <link rel="stylesheet" href="style.css">
+  <title>🔥 Le0nChampion Demon List 🔥</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      margin-top: 40px;
+    }
+
+    .list {
+      width: 90%;
+      margin: auto;
+    }
+
+    .level {
+      background: #1e1e1e;
+      padding: 15px;
+      margin: 12px 0;
+      border-left: 5px solid red;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      gap: 15px;
+    }
+
+    .thumbnail {
+      width: 120px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .rank {
+      font-weight: bold;
+      font-size: 20px;
+      min-width: 40px;
+    }
+
+    .level-info {
+      text-align: left;
+      flex: 1;
+    }
+
+    a {
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: white;
+    }
+
+    /* Difficulty Colors */
+    .extreme { color: #ff0000; font-weight: bold; }
+    .insane  { color: #ff00ff; font-weight: bold; }
+    .hard    { color: #ff8800; font-weight: bold; }
+    .medium  { color: #00bfff; font-weight: bold; }
+    .easy    { color: #00ff00; font-weight: bold; }
+  </style>
 </head>
+
 <body>
 
-  <h1>🔥 Class Demon List 🔥</h1>
-  <p class="subtitle">The hardes levels my class has beaten</p>
+<h1>🔥 Le0nChampion Demon List 🔥</h1>
 
-  <div class="list" id="demonList"></div>
+<div class="list" id="demonList"></div>
 
-  <script src="script.js"></script>
+<script>
+const levels = [
+  { 
+    name: "Skeletal Shenanigans", 
+    difficulty: "Medium Demon",
+    thumbnail: "https://via.placeholder.com/120x70?text=Skeletal"
+  },
+  { 
+    name: "B", 
+    difficulty: "Medium Demon",
+    thumbnail: "https://via.placeholder.com/120x70?text=B"
+  },
+  { 
+    name: "Deadlocked", 
+    difficulty: "Easy Demon",
+    thumbnail: "https://via.placeholder.com/120x70?text=Deadlocked"
+  },
+  { 
+    name: "Islywithmylittle Eye", 
+    difficulty: "Easy Demon",
+    thumbnail: "https://via.placeholder.com/120x70?text=Eye"
+  },
+  { 
+    name: "Fifth Level", 
+    difficulty: "Easy Demon",
+    thumbnail: "https://via.placeholder.com/120x70?text=Level+5"
+  },
+  { name: "Level Six", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=6" },
+  { name: "Level Seven", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=7" },
+  { name: "Level Eight", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=8" },
+  { name: "Level Nine", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=9" },
+  { name: "Level Ten", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=10" }
+];
+
+const listContainer = document.getElementById("demonList");
+
+levels.forEach((level, index) => {
+  const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
+
+  const div = document.createElement("div");
+  div.className = "level";
+
+  div.innerHTML = `
+    <div class="rank">#${index + 1}</div>
+    <img class="thumbnail" src="${level.thumbnail}">
+    <div class="level-info">
+      <strong>${level.name}</strong><br>
+      Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
+      <a href="#">Showcase</a>
+    </div>
+  `;
+
+  listContainer.appendChild(div);
+});
+</script>
+
 </body>
 </html>
