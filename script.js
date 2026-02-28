@@ -1,21 +1,21 @@
 const levels = [
   {
-    name: "Infernal Void",
-    creator: "You",
-    difficulty: "Extreme Demon",
-    video: "https://youtube.com/"
+    name: "Skeletal Shenanagins",
+    creator: "YoRied",
+    difficulty: "Medium Demon",
+    video: "https://youtu.be/mgzTHUKATqo?si=nBJ-yLfE50wb5p34"
   },
   {
-    name: "Crimson Pulse",
-    creator: "You",
-    difficulty: "Insane Demon",
-    video: "https://youtube.com/"
+    name: "B",
+    creator: "motleyorc",
+    difficulty: "Medium Demon",
+    video: "https://youtu.be/ohKPqGxotao?si=3oh_m6ur_OXPKYM7"
   },
   {
-    name: "Silent Chaos",
-    creator: "You",
-    difficulty: "Hard Demon",
-    video: "https://youtube.com/"
+    name: "Deadlocked",
+    creator: "Robtop",
+    difficulty: "Easy Demon",
+    video: "https://youtu.be/M95jvT_q-24?si=vhnkw_RuICIhmZto"
   }
 ];
 
