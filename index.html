@@ -148,8 +148,8 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    // First victor: only crown, no demon emoji
-    const first = i === 0 ? `<span class='crown'>👑</span>` : `😈 ${name}`;
+    // First victor: glowing crown + name, no demon emoji
+    const first = i === 0 ? `<span class='crown'>👑 ${name}</span>` : `😈 ${name}`;
     return `${i+1}. ${first}`;
   }).join("<br>");
 
