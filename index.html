@@ -31,7 +31,6 @@
       scrollbar-color: #00ff00 #222;
     }
 
-    /* Neon scrollbar */
     .list::-webkit-scrollbar {
       width: 12px;
     }
@@ -149,8 +148,9 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    const crown = i === 0 ? "<span class='crown'>👑</span> " : "";
-    return `${i+1}. ${crown}😈 ${name}`;
+    // First victor: only crown, no demon emoji
+    const first = i === 0 ? `<span class='crown'>👑</span>` : `😈 ${name}`;
+    return `${i+1}. ${first}`;
   }).join("<br>");
 
   const div = document.createElement("div");
