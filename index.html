@@ -29,6 +29,7 @@
       align-items: center;
       border-radius: 8px;
       gap: 15px;
+      flex-wrap: wrap;
     }
 
     .thumbnail {
@@ -49,14 +50,27 @@
       flex: 1;
     }
 
-    a {
-      color: red;
-      text-decoration: none;
+    button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
       font-weight: bold;
     }
 
-    a:hover {
-      color: white;
+    button:hover {
+      background: darkred;
+    }
+
+    .victors {
+      width: 100%;
+      text-align: left;
+      margin-top: 10px;
+      display: none;
+      color: #00ff00;
+      font-size: 14px;
     }
 
     /* Difficulty Colors */
@@ -76,36 +90,16 @@
 
 <script>
 const levels = [
-  { 
-    name: "Skeletal Shenanigans", 
-    difficulty: "Medium Demon",
-    thumbnail: "skeletal.jpg"
-  },
-  { 
-    name: "B", 
-    difficulty: "Medium Demon",
-    thumbnail: "sddefault.jpg"
-  },
-  { 
-    name: "Deadlocked", 
-    difficulty: "Medium Demon",
-    thumbnail: ""
-  },
-  { 
-    name: "Ispywithmylittle Eye", 
-    difficulty: "Easy Demon",
-    thumbnail: "maxresdefault.jpg"
-  },
-  { 
-    name: "Is", 
-    difficulty: "Easy Demon",
-    thumbnail: "https://via.placeholder.com/120x70?text=Level+5"
-  },
-  { name: "Shiver", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=6" },
-  { name: "Demon mix", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=7" },
-  { name: "Platnum adventure", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=8" },
-  { name: "The ligting road", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=9" },
-  { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/120x70?text=10" }
+  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg" },
+  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg" },
+  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "deadlocked.jpg" },
+  { name: "Ispywithmylittle Eye", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg" },
+  { name: "Is", difficulty: "Easy Demon", thumbnail: "level5.jpg" },
+  { name: "Shiver", difficulty: "Easy Demon", thumbnail: "level6.jpg" },
+  { name: "Demon Mix", difficulty: "Easy Demon", thumbnail: "level7.jpg" },
+  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "level8.jpg" },
+  { name: "The Lightning Road", difficulty: "Easy Demon", thumbnail: "level9.jpg" },
+  { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "level10.jpg" }
 ];
 
 const listContainer = document.getElementById("demonList");
@@ -122,12 +116,23 @@ levels.forEach((level, index) => {
     <div class="level-info">
       <strong>${level.name}</strong><br>
       Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
-      <a href="#">Showcase</a>
+      <button onclick="toggleVictors(${index})">View Victors</button>
+      <div class="victors" id="victors-${index}">
+        😈 Player1<br>
+        😈 Player2<br>
+        😈 Player3<br>
+        😈 Player4
+      </div>
     </div>
   `;
 
   listContainer.appendChild(div);
 });
+
+function toggleVictors(index) {
+  const section = document.getElementById("victors-" + index);
+  section.style.display = section.style.display === "block" ? "none" : "block";
+}
 </script>
 
 </body>
