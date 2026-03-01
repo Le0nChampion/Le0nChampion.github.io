@@ -20,10 +20,7 @@
       color: red;
       margin: 15px 0;
       font-size: 36px;
-      text-shadow:
-        0 0 8px #ff0000,
-        0 0 16px #ff0000,
-        0 0 24px #ff0000;
+      text-shadow: 0 0 8px #ff0000, 0 0 16px #ff0000, 0 0 24px #ff0000;
     }
 
     .list {
@@ -40,7 +37,6 @@
     }
     .list::-webkit-scrollbar-track {
       background: #222;
-      border-radius: 6px;
     }
     .list::-webkit-scrollbar-thumb {
       background: #00ff00;
@@ -108,14 +104,18 @@
       transform: scale(1.05);
     }
 
+    /* REAL SLIDE ANIMATION */
     .victors {
       width: 100%;
       text-align: left;
       margin-top: 12px;
-      display: none;
       color: #00ff00;
       font-size: 16px;
       text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00;
+
+      height: 0;
+      overflow: hidden;
+      transition: height 0.4s ease;
     }
 
     .extreme { color: #ff0000; font-weight: bold; text-shadow: 0 0 4px #ff0000; }
@@ -126,10 +126,7 @@
 
     .crown {
       color: #00ff00;
-      text-shadow:
-        0 0 8px #00ff00,
-        0 0 16px #00ff00,
-        0 0 24px #00ff00;
+      text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00, 0 0 24px #00ff00;
     }
   </style>
 </head>
@@ -189,7 +186,15 @@ levels.forEach((level, index) => {
 
 function toggleVictors(index) {
   const section = document.getElementById("victors-" + index);
-  section.style.display = section.style.display === "block" ? "none" : "block";
+
+  if (section.style.height && section.style.height !== "0px") {
+    section.style.height = section.scrollHeight + "px";
+    requestAnimationFrame(() => {
+      section.style.height = "0px";
+    });
+  } else {
+    section.style.height = section.scrollHeight + "px";
+  }
 }
 </script>
 
