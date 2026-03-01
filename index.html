@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>🔥 Class Demon List 🔥</title>
-
   <style>
     body {
       background: #111;
@@ -208,7 +207,7 @@ function renderList(levels,containerId){
           <div class="rank">#${index+1}</div>
           <strong>${level.name}</strong>
           <div class="difficulty"><span>${difficultyFaces[level.difficulty]}</span>${level.difficulty}</div>
-          <button onclick="toggleVictors('${containerId}',${index})">Showcase</button>
+          <button onclick="toggleVictors('${containerId}',${index})">Victors</button>
           <div class="victors" id="${containerId}-victors-${index}">${victorsHTML}</div>
         </div>
       </div>
@@ -240,5 +239,6 @@ renderList(classicLevels,"classicList");
 renderList(platformerLevels,"platformerList");
 
 </script>
+
 </body>
 </html>
