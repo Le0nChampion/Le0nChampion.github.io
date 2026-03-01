@@ -19,15 +19,130 @@
       margin: 20px 0;
     }
 
+    .top-buttons {
+      margin-bottom: 15px;
+    }
+
+    .switch-btn {
+      background: #222;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 10px 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 18px;
+      box-shadow: 0 0 12px #00ff00;
+      transition: 0.3s;
+    }
+
+    .switch-btn:hover {
+      background: #00ff00;
+      color: black;
+      box-shadow: 0 0 25px #00ff00;
+    }
+
+    .list-container {
+      width: 95%;
+      margin: auto;
+      max-height: 75vh;
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* LEVEL STYLING */
+
+    .level {
+      background: #1e1e1e;
+      margin: 22px 0;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 0 15px red;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 22px;
+    }
+
+    .thumbnail {
+      width: 260px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff00;
+      flex-shrink: 0;
+    }
+
+    .level-info {
+      text-align: left;
+      flex: 1;
+    }
+
+    .rank {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .difficulty span {
+      margin-right: 6px;
+      font-size: 22px;
+    }
+
+    button {
+      background: red;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 0 12px red;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: darkred;
+      box-shadow: 0 0 25px red;
+    }
+
+    .victors {
+      margin-top: 12px;
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00;
+      font-size: 20px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.6s ease;
+    }
+
+    .crown {
+      color: #00ff00;
+      font-weight: bold;
+      animation: crownPulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes crownPulse {
+      0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+      50% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+      100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    }
+
+    /* BEST PLAYERS */
+
     .players {
       background: #1e1e1e;
-      margin: 22px auto;
+      margin: 22px 0;
       padding: 30px;
       border-radius: 14px;
       box-shadow: 0 0 20px gold;
       font-size: 26px;
-      width: 90%;
-      max-width: 700px;
     }
 
     .player {
@@ -52,7 +167,6 @@
       100% { text-shadow: 0 0 5px gold, 0 0 10px gold; }
     }
 
-    /* Slide + Fade */
     .player-info {
       max-height: 0;
       overflow: hidden;
@@ -77,74 +191,107 @@
 
 <body>
 
-<h1>🏆 Best Players 🏆</h1>
+<h1>🔥 Class Demon List 🔥</h1>
 
-<div class="players">
+<div class="top-buttons">
+  <button class="switch-btn" onclick="showClassic()">😈 Classic</button>
+  <button class="switch-btn" onclick="showPlayers()">🏆 Best Players</button>
+  <button class="switch-btn" onclick="showPlatformer()">🕹️ Platformer</button>
+</div>
 
-  <div class="player" onclick="togglePlayer('p1')">
-    🥇 1. <span class="gold-player">Timur</span>
-    <div class="player-info" id="p1">
-      -
-      PUT YOUR STUFF HERE
+<div class="list-container">
+
+  <div id="classicList"></div>
+
+  <div id="playersList" class="hidden">
+    <div class="players">
+
+      <div class="player" onclick="togglePlayer('p1')">
+        🥇 1. <span class="gold-player">Timur</span>
+        <div class="player-info" id="p1">
+          -
+          PUT YOUR STUFF HERE
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p2')">
+        🥈 2. Kostia
+        <div class="player-info" id="p2">
+          -
+          PUT YOUR STUFF HERE
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p3')">
+        🥉 3. Leon
+        <div class="player-info" id="p3">
+          -
+          PUT YOUR STUFF HERE
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p4')">
+        4️⃣ 4. Ruslan
+        <div class="player-info" id="p4">
+          -
+          PUT YOUR STUFF HERE
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p5')">
+        5️⃣ 5. Ilja
+        <div class="player-info" id="p5">
+          -
+          PUT YOUR STUFF HERE
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="player" onclick="togglePlayer('p2')">
-    🥈 2. Kostia
-    <div class="player-info" id="p2">
-      -
-      PUT YOUR STUFF HERE
-    </div>
-  </div>
-
-  <div class="player" onclick="togglePlayer('p3')">
-    🥉 3. Leon
-    <div class="player-info" id="p3">
-      -
-      PUT YOUR STUFF HERE
-    </div>
-  </div>
-
-  <div class="player" onclick="togglePlayer('p4')">
-    4️⃣ 4. Ruslan
-    <div class="player-info" id="p4">
-      -
-      PUT YOUR STUFF HERE
-    </div>
-  </div>
-
-  <div class="player" onclick="togglePlayer('p5')">
-    5️⃣ 5. Ilja
-    <div class="player-info" id="p5">
-      -
-      PUT YOUR STUFF HERE
-    </div>
-  </div>
+  <div id="platformerList" class="hidden"></div>
 
 </div>
 
 <script>
+
 let currentlyOpen = null;
 
 function togglePlayer(id) {
   const panel = document.getElementById(id);
 
-  // If clicking the same open one → close it
   if (currentlyOpen === panel) {
     panel.classList.remove("open");
     currentlyOpen = null;
     return;
   }
 
-  // Close previous one if exists
   if (currentlyOpen) {
     currentlyOpen.classList.remove("open");
   }
 
-  // Open new one
   panel.classList.add("open");
   currentlyOpen = panel;
 }
+
+function showPlayers(){
+  document.getElementById("classicList").classList.add("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
+  document.getElementById("playersList").classList.remove("hidden");
+}
+
+function showClassic(){
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("classicList").classList.remove("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
+}
+
+function showPlatformer(){
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("platformerList").classList.remove("hidden");
+  document.getElementById("classicList").classList.add("hidden");
+}
+
 </script>
 
 </body>
