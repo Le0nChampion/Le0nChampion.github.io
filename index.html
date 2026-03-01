@@ -118,14 +118,12 @@
       text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00;
     }
 
-    /* Difficulty Colors with glow */
     .extreme { color: #ff0000; font-weight: bold; text-shadow: 0 0 4px #ff0000; }
     .insane  { color: #ff00ff; font-weight: bold; text-shadow: 0 0 4px #ff00ff; }
     .hard    { color: #ff8800; font-weight: bold; text-shadow: 0 0 4px #ff8800; }
     .medium  { color: #00bfff; font-weight: bold; text-shadow: 0 0 4px #00bfff; }
     .easy    { color: #00ff00; font-weight: bold; text-shadow: 0 0 4px #00ff00; }
 
-    /* Glowing crown for first victor */
     .crown {
       color: #00ff00;
       text-shadow:
@@ -143,10 +141,10 @@
 
 <script>
 const levels = [
-  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur", "Kostia",] },
-  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur", "Kostia", "Leon",] },
-  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "https://via.placeholder.com/270x150?text=3", victors: ["Timur", "Kostia",] },
-  { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "ISpyWithMyLittleEye_Ball.webp", victors: ["Leon", "Timur",] },
+  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur", "Kostia"] },
+  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur", "Kostia", "Leon"] },
+  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "https://via.placeholder.com/270x150?text=3", victors: ["Timur", "Kostia"] },
+  { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "ISpyWithMyLittleEye_Ball.webp", victors: ["Leon", "Timur"] },
   { name: "Clubstep", difficulty: "Easy Demon", thumbnail: "clubstep.jpg", victors: ["Kostia","Timur"]},
   { name: "X", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=6", victors: ["Kostia"] },
   { name: "Is", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-085959_Geode.png", victors: ["Kostia"] },
@@ -154,7 +152,7 @@ const levels = [
   { name: "Speed Racer", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-090411_Geode.png", victors: ["Leon","Timur"] },
   { name: "Demon Mixed", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=10", victors: ["Leon","Timur"] },
   { name: "Starpunk", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg", victors: ["Kostia"] },
-  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=12", victors: ["Kostia","Timur","Leon",] },
+  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "https://via.placeholder.com/270x150?text=12", victors: ["Kostia","Timur","Leon"] },
   { name: "The Lightning road", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-103353_Geode.png", victors: ["Kostia","Timur","Leon"] },
   { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "Demon_Pack_3_-_The_Nightmare.webp", victors: ["Kostia","Timur","Leon","Russlan"] },
   { name: "Stereo Madness", difficulty: "GRANDPA Demon", thumbnail: "https://via.placeholder.com/270x150?text=15", victors: ["Kostia","Timur","Russlan","Leon","ilja"] }
@@ -166,7 +164,6 @@ levels.forEach((level, index) => {
   const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
   const victorsHTML = level.victors.map((name,i) => {
-    // First victor: glowing crown + name, no demon
     const first = i === 0 ? `<span class='crown'>👑 ${name}</span>` : `😈 ${name}`;
     return `${i+1}. ${first}`;
   }).join("<br>");
@@ -180,7 +177,7 @@ levels.forEach((level, index) => {
     <div class="level-info">
       <strong>${level.name}</strong><br>
       Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
-      <button onclick="toggleVict.clubstep.jpgors(${index})">View Victors</button>
+      <button onclick="toggleVictors(${index})">View Victors</button>
       <div class="victors" id="victors-${index}">
         ${victorsHTML}
       </div>
