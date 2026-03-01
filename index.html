@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>🔥 Class Demon List 🔥</title>
+
   <style>
     body {
       background-color: #111;
@@ -20,33 +21,57 @@
       color: red;
       margin: 15px 0;
       font-size: 36px;
-      text-shadow: 0 0 8px #ff0000, 0 0 16px #ff0000, 0 0 24px #ff0000;
+      text-shadow: 0 0 8px red, 0 0 20px red;
+    }
+
+    .top-buttons {
+      margin-bottom: 10px;
+    }
+
+    .switch-btn {
+      background: #222;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      margin: 0 5px;
+      box-shadow: 0 0 8px #00ff00;
+      transition: 0.3s;
+    }
+
+    .switch-btn:hover {
+      background: #00ff00;
+      color: black;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    .list-container {
+      width: 95%;
+      height: 85%;
+      position: relative;
+      overflow: hidden;
     }
 
     .list {
-      width: 95%;
-      max-height: 90%;
+      position: absolute;
+      width: 100%;
+      height: 100%;
       overflow-y: auto;
       padding-right: 10px;
-      scrollbar-width: thin;
-      scrollbar-color: #00ff00 #222;
+      transition: transform 0.6s ease, opacity 0.6s ease;
     }
 
-    .list::-webkit-scrollbar {
-      width: 12px;
-    }
-    .list::-webkit-scrollbar-track {
-      background: #222;
-    }
-    .list::-webkit-scrollbar-thumb {
-      background: #00ff00;
-      border-radius: 6px;
-      box-shadow: 0 0 6px #00ff00;
+    .hidden {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
     }
 
     .level {
       background: #1e1e1e;
-      padding: 24px;
+      padding: 20px;
       margin: 16px 0;
       border-left: 6px solid red;
       display: flex;
@@ -55,78 +80,77 @@
       gap: 20px;
       flex-wrap: wrap;
       font-size: 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 8px #ff0000;
+      box-shadow: 0 0 10px red;
+      transition: 0.3s;
     }
 
     .level:hover {
-      box-shadow: 0 0 16px #ff0000, 0 0 24px #ff00ff;
-      transform: scale(1.02);
+      transform: scale(1.03);
+      box-shadow: 0 0 20px red, 0 0 30px magenta;
     }
 
     .thumbnail {
-      width: 270px;
-      height: 150px;
+      width: 230px;
+      height: 130px;
       object-fit: cover;
       border-radius: 8px;
-      box-shadow: 0 0 8px #00ff00;
+      box-shadow: 0 0 10px #00ff00;
     }
 
     .rank {
       font-weight: bold;
-      font-size: 28px;
+      font-size: 26px;
       min-width: 50px;
-      text-shadow: 0 0 4px #ff0000;
-    }
-
-    .level-info {
-      text-align: left;
-      flex: 1;
     }
 
     button {
       background: red;
       color: white;
       border: none;
-      padding: 10px 16px;
+      padding: 8px 14px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 18px;
       margin-top: 8px;
-      box-shadow: 0 0 8px #ff0000;
-      transition: all 0.2s ease;
+      box-shadow: 0 0 8px red;
     }
 
     button:hover {
       background: darkred;
-      box-shadow: 0 0 12px #ff00ff;
-      transform: scale(1.05);
+      box-shadow: 0 0 15px magenta;
     }
 
-    /* REAL SLIDE ANIMATION */
     .victors {
       width: 100%;
-      text-align: left;
-      margin-top: 12px;
+      margin-top: 10px;
       color: #00ff00;
-      font-size: 16px;
-      text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00;
-
       height: 0;
       overflow: hidden;
       transition: height 0.4s ease;
+      font-size: 17px;
+      text-shadow: 0 0 6px #00ff00;
     }
 
-    .extreme { color: #ff0000; font-weight: bold; text-shadow: 0 0 4px #ff0000; }
-    .insane  { color: #ff00ff; font-weight: bold; text-shadow: 0 0 4px #ff00ff; }
-    .hard    { color: #ff8800; font-weight: bold; text-shadow: 0 0 4px #ff8800; }
-    .medium  { color: #00bfff; font-weight: bold; text-shadow: 0 0 4px #00bfff; }
-    .easy    { color: #00ff00; font-weight: bold; text-shadow: 0 0 4px #00ff00; }
+    .medium { color: #00bfff; }
+    .easy { color: #00ff00; }
 
     .crown {
       color: #00ff00;
-      text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00, 0 0 24px #00ff00;
+      text-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00, 0 0 45px #00ff00;
+      font-weight: bold;
+    }
+
+    /* Scrollbar glow */
+    .list::-webkit-scrollbar {
+      width: 10px;
+    }
+    .list::-webkit-scrollbar-track {
+      background: #222;
+    }
+    .list::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #00ff00;
     }
   </style>
 </head>
@@ -134,58 +158,66 @@
 <body>
 
 <h1>🔥 Class Demon List 🔥</h1>
-<div class="list" id="demonList"></div>
+
+<div class="top-buttons">
+  <button class="switch-btn" onclick="showClassic()">😈 Classic</button>
+  <button class="switch-btn" onclick="showPlatformer()">🕹️ Platformer</button>
+</div>
+
+<div class="list-container">
+  <div class="list" id="classicList"></div>
+  <div class="list hidden" id="platformerList"></div>
+</div>
 
 <script>
-const levels = [
-  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur", "Kostia"] },
-  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur", "Kostia", "Leon"] },
-  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "FmXs0V1aEAEtWAA.jpg", victors: ["Timur", "Kostia"] },
-  { name: "Ispywithmylittleeye", difficulty: "Easy Demon", thumbnail: "ISpyWithMyLittleEye_Ball.webp", victors: ["Leon", "Timur"] },
-  { name: "Clubstep", difficulty: "Easy Demon", thumbnail: "clubstep.jpg", victors: ["Kostia","Timur"]},
-  { name: "X", difficulty: "Easy Demon", thumbnail: "X.webp", victors: ["Kostia"] },
-  { name: "Is", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-085959_Geode.png", victors: ["Kostia"] },
-  { name: "Shiver", difficulty: "Easy Demon", thumbnail: "Screenshot_20260228-235631_Geode.png", victors: ["Kostia", "Leon"] },
-  { name: "Speed Racer", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-090411_Geode.png", victors: ["Leon","Timur"] },
-  { name: "Demon Mixed", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-121527_Geode.png", victors: ["Leon","Timur"] },
-  { name: "Starpunk", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg", victors: ["Kostia"] },
-  { name: "Platinum Adventure", difficulty: "Easy Demon", thumbnail: "PlatinumAdventure.webp", victors: ["Kostia","Timur","Leon"] },
-  { name: "The Lightning road", difficulty: "Easy Demon", thumbnail: "Screenshot_20260301-103353_Geode.png", victors: ["Kostia","Timur","Leon"] },
-  { name: "The Nightmare", difficulty: "Easy Demon", thumbnail: "Demon_Pack_3_-_The_Nightmare.webp", victors: ["Kostia","Timur","Leon","Ruslan"] },
-  { name: "Stereo Madness", difficulty: "GRANDPA Demon", thumbnail: "3135958522_preview_OIP.jpg", victors: ["Kostia","Timur","Ruslan","Leon","ilja"] }
+
+const classicLevels = [
+  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur","Kostia"] },
+  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur","Kostia","Leon"] },
+  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "FmXs0V1aEAEtWAA.jpg", victors: ["Timur","Kostia"] }
 ];
 
-const listContainer = document.getElementById("demonList");
+const platformerLevels = [
+  { name: "Jetpack Trials", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg", victors: ["Leon","Timur"] },
+  { name: "Gravity Tower", difficulty: "Medium Demon", thumbnail: "clubstep.jpg", victors: ["Kostia"] }
+];
 
-levels.forEach((level, index) => {
-  const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
+function createList(levels, containerId) {
+  const container = document.getElementById(containerId);
 
-  const victorsHTML = level.victors.map((name,i) => {
-    const first = i === 0 ? `<span class='crown'>👑 ${name}</span>` : `😈 ${name}`;
-    return `${i+1}. ${first}`;
-  }).join("<br>");
+  levels.forEach((level, index) => {
+    const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
 
-  const div = document.createElement("div");
-  div.className = "level";
+    const victorsHTML = level.victors.map((name,i) => {
+      if (i === 0) {
+        return `${i+1}. <span class="crown">👑 ${name}</span>`;
+      } else {
+        return `${i+1}. 😈 ${name}`;
+      }
+    }).join("<br>");
 
-  div.innerHTML = `
-    <div class="rank">#${index + 1}</div>
-    <img class="thumbnail" src="${level.thumbnail}">
-    <div class="level-info">
-      <strong>${level.name}</strong><br>
-      Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
-      <button onclick="toggleVictors(${index})">View Victors</button>
-      <div class="victors" id="victors-${index}">
-        ${victorsHTML}
+    const div = document.createElement("div");
+    div.className = "level";
+
+    div.innerHTML = `
+      <div class="rank">#${index+1}</div>
+      <img class="thumbnail" src="${level.thumbnail}">
+      <div>
+        <strong>${level.name}</strong><br>
+        Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
+        <button onclick="toggleVictors('${containerId}', ${index})">View Victors</button>
+        <div class="victors" id="${containerId}-victors-${index}">
+          ${victorsHTML}
+        </div>
       </div>
-    </div>
-  `;
+    `;
 
-  listContainer.appendChild(div);
-});
+    container.appendChild(div);
+  });
+}
 
-function toggleVictors(index) {
-  const section = document.getElementById("victors-" + index);
+function toggleVictors(containerId, index) {
+  const section = document.getElementById(containerId + "-victors-" + index);
 
   if (section.style.height && section.style.height !== "0px") {
     section.style.height = section.scrollHeight + "px";
@@ -196,6 +228,20 @@ function toggleVictors(index) {
     section.style.height = section.scrollHeight + "px";
   }
 }
+
+function showClassic() {
+  document.getElementById("classicList").classList.remove("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
+}
+
+function showPlatformer() {
+  document.getElementById("platformerList").classList.remove("hidden");
+  document.getElementById("classicList").classList.add("hidden");
+}
+
+createList(classicLevels, "classicList");
+createList(platformerLevels, "platformerList");
+
 </script>
 
 </body>
