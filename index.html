@@ -5,132 +5,130 @@
 
   <style>
     body {
-      background-color: #111;
+      background: #111;
       color: white;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
+      text-align: center;
     }
 
     h1 {
+      font-size: 42px;
       color: red;
-      margin: 15px 0;
-      font-size: 36px;
-      text-shadow: 0 0 8px red, 0 0 20px red;
+      text-shadow: 0 0 10px red, 0 0 25px red;
+      margin: 20px 0;
     }
 
     .top-buttons {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .switch-btn {
       background: #222;
       border: 2px solid #00ff00;
       color: #00ff00;
-      padding: 8px 14px;
+      padding: 10px 18px;
       font-weight: bold;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 6px;
-      margin: 0 5px;
-      box-shadow: 0 0 8px #00ff00;
+      margin: 5px;
+      font-size: 18px;
+      box-shadow: 0 0 12px #00ff00;
       transition: 0.3s;
     }
 
     .switch-btn:hover {
       background: #00ff00;
       color: black;
-      box-shadow: 0 0 20px #00ff00;
+      box-shadow: 0 0 25px #00ff00;
     }
 
     .list-container {
       width: 95%;
-      height: 85%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .list {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      margin: auto;
+      max-height: 75vh;
       overflow-y: auto;
-      padding-right: 10px;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-
-    .hidden {
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events: none;
+      padding-bottom: 40px;
     }
 
     .level {
       background: #1e1e1e;
-      padding: 20px;
-      margin: 16px 0;
-      border-left: 6px solid red;
+      margin: 22px 0;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 0 15px red;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      border-radius: 10px;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 20px;
-      box-shadow: 0 0 10px red;
-    }
-
-    .thumbnail {
-      width: 230px;
-      height: 130px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ff00;
+      font-size: 22px;
     }
 
     .rank {
+      font-size: 30px;
       font-weight: bold;
-      font-size: 26px;
-      min-width: 50px;
+      margin-bottom: 10px;
+    }
+
+    .thumbnail {
+      width: 300px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff00;
+      margin-bottom: 15px;
+    }
+
+    .difficulty {
+      font-size: 22px;
+      margin: 5px 0;
+    }
+
+    .difficulty span {
+      margin-right: 6px;
+      font-size: 24px;
     }
 
     button {
       background: red;
-      color: white;
       border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 18px;
       cursor: pointer;
-      font-weight: bold;
-      margin-top: 8px;
+      margin-top: 10px;
+      box-shadow: 0 0 12px red;
+      transition: 0.3s;
     }
 
-    .difficulty-face {
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-      margin-right: 6px;
+    button:hover {
+      background: darkred;
+      box-shadow: 0 0 25px red;
     }
 
     .victors {
-      width: 100%;
-      margin-top: 10px;
+      margin-top: 15px;
       color: #00ff00;
-      height: 0;
+      text-shadow: 0 0 8px #00ff00;
+      font-size: 20px;
       overflow: hidden;
-      transition: height 0.4s ease;
-      font-size: 17px;
-      text-shadow: 0 0 6px #00ff00;
+      max-height: 0;
+      transition: max-height 0.6s ease;
+      width: 100%;
     }
 
     .crown {
       color: #00ff00;
-      text-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00;
       font-weight: bold;
+      text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+      font-size: 22px;
     }
+
+    .hidden {
+      display: none;
+    }
+
   </style>
 </head>
 
@@ -144,81 +142,78 @@
 </div>
 
 <div class="list-container">
-  <div class="list" id="classicList"></div>
-  <div class="list hidden" id="platformerList"></div>
+  <div id="classicList"></div>
+  <div id="platformerList" class="hidden"></div>
 </div>
 
 <script>
 
+const difficultyFaces = {
+  "Easy Demon": "😈",
+  "Medium Demon": "👿",
+  "Hard Demon": "🔥",
+  "Insane Demon": "💀",
+  "Extreme Demon": "☠️"
+};
+
 let classicLevels = [];
 let platformerLevels = [];
 
-/* 🔥 ADD LEVELS HERE 🔥 */
+/* ===== LEVELS ===== */
 
-addLevel("Classic", "Skeletal Shenanigans", "Medium Demon", "skeletal.jpg", ["Timur","Kostia"]);
-addLevel("Classic", "B", "Medium Demon", "sddefault.jpg", ["Timur","Kostia","Leon"]);
-addLevel("Classic", "Deadlocked", "Medium Demon", "FmXs0V1aEAEtWAA.jpg", ["Timur","Kostia"]);
-addLevel("Classic", "Ispywithmylittleeye", "Easy Demon", "ISpyWithMyLittleEye_Ball.webp", ["Leon","Timur"]);
-addLevel("Classic", "Clubstep", "Easy Demon", "clubstep.jpg", ["Kostia","Timur"]);
-addLevel("Classic", "X", "Easy Demon", "X.webp", ["Kostia"]);
-addLevel("Classic", "Is", "Easy Demon", "Screenshot_20260301-085959_Geode.png", ["Kostia"]);
-addLevel("Classic", "Shiver", "Easy Demon", "Screenshot_20260228-235631_Geode.png", ["Kostia","Leon"]);
-addLevel("Classic", "Speed Racer", "Easy Demon", "Screenshot_20260301-090411_Geode.png", ["Leon","Timur"]);
-addLevel("Classic", "Demon Mixed", "Easy Demon", "Screenshot_20260301-121527_Geode.png", ["Leon","Timur"]);
-addLevel("Classic", "Starpunk", "Easy Demon", "maxresdefault.jpg", ["Kostia"]);
-addLevel("Classic", "Platinum Adventure", "Easy Demon", "PlatinumAdventure.webp", ["Kostia","Timur","Leon"]);
-addLevel("Classic", "The Lightning road", "Easy Demon", "Screenshot_20260301-103353_Geode.png", ["Kostia","Timur","Leon"]);
-addLevel("Classic", "The Nightmare", "Easy Demon", "Demon_Pack_3_-_The_Nightmare.webp", ["Kostia","Timur","Leon","Ruslan"]);
-addLevel("Classic", "Stereo Madness", "Hard Demon", "3135958522_preview_OIP.jpg", ["Kostia","Timur","Ruslan","Leon","ilja"]);
+addLevel("Classic","Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
+addLevel("Classic","B","Medium Demon","sddefault.jpg",["Timur","Kostia","Leon"]);
+addLevel("Classic","Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Timur","Kostia"]);
+addLevel("Classic","Ispywithmylittleeye","Easy Demon","ISpyWithMyLittleEye_Ball.webp",["Leon","Timur"]);
+addLevel("Classic","Clubstep","Easy Demon","clubstep.jpg",["Kostia","Timur"]);
+addLevel("Classic","X","Easy Demon","X.webp",["Kostia"]);
+addLevel("Classic","Is","Easy Demon","Screenshot_20260301-085959_Geode.png",["Kostia"]);
+addLevel("Classic","Shiver","Easy Demon","Screenshot_20260228-235631_Geode.png",["Kostia","Leon"]);
+addLevel("Classic","Speed Racer","Easy Demon","Screenshot_20260301-090411_Geode.png",["Leon","Timur"]);
+addLevel("Classic","Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.png",["Leon","Timur"]);
+addLevel("Classic","Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
+addLevel("Classic","Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon"]);
+addLevel("Classic","The Lightning road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Leon"]);
+addLevel("Classic","The Nightmare","Easy Demon","Demon_Pack_3_-_The_Nightmare.webp",["Kostia","Timur","Leon","Ruslan"]);
+addLevel("Classic","Stereo Madness","Hard Demon","3135958522_preview_OIP.jpg",["Kostia","Timur","Ruslan","Leon","ilja"]);
 
-addLevel("Platformer", "Jetpack Trials", "Easy Demon", "maxresdefault.jpg", ["Leon","Timur"]);
+addLevel("Platformer","Jetpack Trials","Easy Demon","maxresdefault.jpg",["Leon","Timur"]);
 
-/* ========================= */
+/* ===== FUNCTIONS ===== */
 
-const difficultyFaces = {
-  "Easy Demon": "https://i.imgur.com/6Z6QGQy.png",
-  "Medium Demon": "https://i.imgur.com/z8d6N0J.png",
-  "Hard Demon": "https://i.imgur.com/F4k0zLx.png",
-  "Insane Demon": "https://i.imgur.com/5cX1JfS.png",
-  "Extreme Demon": "https://i.imgur.com/ktW8s0p.png"
-};
-
-function addLevel(type, name, difficulty, thumbnail, victors) {
-  const level = { name, difficulty, thumbnail, victors };
-  if (type === "Classic") classicLevels.push(level);
+function addLevel(type,name,difficulty,thumbnail,victors){
+  const level = {name,difficulty,thumbnail,victors};
+  if(type==="Classic") classicLevels.push(level);
   else platformerLevels.push(level);
 }
 
-function renderList(levels, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
+function renderList(levels,containerId){
+  const container=document.getElementById(containerId);
+  container.innerHTML="";
 
-  levels.forEach((level, index) => {
+  levels.forEach((level,index)=>{
+    const div=document.createElement("div");
+    div.className="level";
 
-    const face = difficultyFaces[level.difficulty] || "";
-    const faceHTML = face ? `<img class="difficulty-face" src="${face}">` : "";
-
-    const victorsHTML = level.victors.map((name,i) => {
-      if (i === 0) {
-        return `${i+1}. <span class="crown">👑 ${name}</span>`;
+    const victorsHTML = level.victors.map((v,i)=>{
+      if(i===0){
+        return `${i+1}. <span class="crown">👑 ${v}</span>`;
       } else {
-        return `${i+1}. 😈 ${name}`;
+        return `${i+1}. 😈 ${v}`;
       }
     }).join("<br>");
 
-    const div = document.createElement("div");
-    div.className = "level";
-
-    div.innerHTML = `
+    div.innerHTML=`
       <div class="rank">#${index+1}</div>
       <img class="thumbnail" src="${level.thumbnail}">
-      <div>
-        <strong>${level.name}</strong><br>
-        ${faceHTML} ${level.difficulty}<br>
-        <button onclick="toggleVictors('${containerId}', ${index})">View Victors</button>
-        <div class="victors" id="${containerId}-victors-${index}">
-          ${victorsHTML}
-        </div>
+      <strong>${level.name}</strong>
+      <div class="difficulty">
+        <span>${difficultyFaces[level.difficulty]}</span>
+        ${level.difficulty}
+      </div>
+      <button onclick="toggleVictors('${containerId}',${index})">Showcase</button>
+      <div class="victors" id="${containerId}-victors-${index}">
+        ${victorsHTML}
       </div>
     `;
 
@@ -226,31 +221,27 @@ function renderList(levels, containerId) {
   });
 }
 
-function toggleVictors(containerId, index) {
-  const section = document.getElementById(containerId + "-victors-" + index);
-
-  if (section.style.height && section.style.height !== "0px") {
-    section.style.height = section.scrollHeight + "px";
-    requestAnimationFrame(() => {
-      section.style.height = "0px";
-    });
+function toggleVictors(containerId,index){
+  const section=document.getElementById(containerId+"-victors-"+index);
+  if(section.style.maxHeight && section.style.maxHeight!=="0px"){
+    section.style.maxHeight="0px";
   } else {
-    section.style.height = section.scrollHeight + "px";
+    section.style.maxHeight=section.scrollHeight+"px";
   }
 }
 
-function showClassic() {
+function showClassic(){
   document.getElementById("classicList").classList.remove("hidden");
   document.getElementById("platformerList").classList.add("hidden");
 }
 
-function showPlatformer() {
+function showPlatformer(){
   document.getElementById("platformerList").classList.remove("hidden");
   document.getElementById("classicList").classList.add("hidden");
 }
 
-renderList(classicLevels, "classicList");
-renderList(platformerLevels, "platformerList");
+renderList(classicLevels,"classicList");
+renderList(platformerLevels,"platformerList");
 
 </script>
 
