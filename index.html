@@ -81,12 +81,6 @@
       flex-wrap: wrap;
       font-size: 20px;
       box-shadow: 0 0 10px red;
-      transition: 0.3s;
-    }
-
-    .level:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px red, 0 0 30px magenta;
     }
 
     .thumbnail {
@@ -112,12 +106,13 @@
       cursor: pointer;
       font-weight: bold;
       margin-top: 8px;
-      box-shadow: 0 0 8px red;
     }
 
-    button:hover {
-      background: darkred;
-      box-shadow: 0 0 15px magenta;
+    .difficulty-face {
+      width: 28px;
+      height: 28px;
+      vertical-align: middle;
+      margin-right: 6px;
     }
 
     .victors {
@@ -131,26 +126,10 @@
       text-shadow: 0 0 6px #00ff00;
     }
 
-    .medium { color: #00bfff; }
-    .easy { color: #00ff00; }
-
     .crown {
       color: #00ff00;
-      text-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00, 0 0 45px #00ff00;
+      text-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00;
       font-weight: bold;
-    }
-
-    /* Scrollbar glow */
-    .list::-webkit-scrollbar {
-      width: 10px;
-    }
-    .list::-webkit-scrollbar-track {
-      background: #222;
-    }
-    .list::-webkit-scrollbar-thumb {
-      background: #00ff00;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #00ff00;
     }
   </style>
 </head>
@@ -171,22 +150,53 @@
 
 <script>
 
-const classicLevels = [
-  { name: "Skeletal Shenanigans", difficulty: "Medium Demon", thumbnail: "skeletal.jpg", victors: ["Timur","Kostia"] },
-  { name: "B", difficulty: "Medium Demon", thumbnail: "sddefault.jpg", victors: ["Timur","Kostia","Leon"] },
-  { name: "Deadlocked", difficulty: "Medium Demon", thumbnail: "FmXs0V1aEAEtWAA.jpg", victors: ["Timur","Kostia"] }
-];
+let classicLevels = [];
+let platformerLevels = [];
 
-const platformerLevels = [
-  { name: "Jetpack Trials", difficulty: "Easy Demon", thumbnail: "maxresdefault.jpg", victors: ["Leon","Timur"] },
-  { name: "Gravity Tower", difficulty: "Medium Demon", thumbnail: "clubstep.jpg", victors: ["Kostia"] }
-];
+/* 🔥 ADD LEVELS HERE 🔥 */
 
-function createList(levels, containerId) {
+addLevel("Classic", "Skeletal Shenanigans", "Medium Demon", "skeletal.jpg", ["Timur","Kostia"]);
+addLevel("Classic", "B", "Medium Demon", "sddefault.jpg", ["Timur","Kostia","Leon"]);
+addLevel("Classic", "Deadlocked", "Medium Demon", "FmXs0V1aEAEtWAA.jpg", ["Timur","Kostia"]);
+addLevel("Classic", "Ispywithmylittleeye", "Easy Demon", "ISpyWithMyLittleEye_Ball.webp", ["Leon","Timur"]);
+addLevel("Classic", "Clubstep", "Easy Demon", "clubstep.jpg", ["Kostia","Timur"]);
+addLevel("Classic", "X", "Easy Demon", "X.webp", ["Kostia"]);
+addLevel("Classic", "Is", "Easy Demon", "Screenshot_20260301-085959_Geode.png", ["Kostia"]);
+addLevel("Classic", "Shiver", "Easy Demon", "Screenshot_20260228-235631_Geode.png", ["Kostia","Leon"]);
+addLevel("Classic", "Speed Racer", "Easy Demon", "Screenshot_20260301-090411_Geode.png", ["Leon","Timur"]);
+addLevel("Classic", "Demon Mixed", "Easy Demon", "Screenshot_20260301-121527_Geode.png", ["Leon","Timur"]);
+addLevel("Classic", "Starpunk", "Easy Demon", "maxresdefault.jpg", ["Kostia"]);
+addLevel("Classic", "Platinum Adventure", "Easy Demon", "PlatinumAdventure.webp", ["Kostia","Timur","Leon"]);
+addLevel("Classic", "The Lightning road", "Easy Demon", "Screenshot_20260301-103353_Geode.png", ["Kostia","Timur","Leon"]);
+addLevel("Classic", "The Nightmare", "Easy Demon", "Demon_Pack_3_-_The_Nightmare.webp", ["Kostia","Timur","Leon","Ruslan"]);
+addLevel("Classic", "Stereo Madness", "Hard Demon", "3135958522_preview_OIP.jpg", ["Kostia","Timur","Ruslan","Leon","ilja"]);
+
+addLevel("Platformer", "Jetpack Trials", "Easy Demon", "maxresdefault.jpg", ["Leon","Timur"]);
+
+/* ========================= */
+
+const difficultyFaces = {
+  "Easy Demon": "https://i.imgur.com/6Z6QGQy.png",
+  "Medium Demon": "https://i.imgur.com/z8d6N0J.png",
+  "Hard Demon": "https://i.imgur.com/F4k0zLx.png",
+  "Insane Demon": "https://i.imgur.com/5cX1JfS.png",
+  "Extreme Demon": "https://i.imgur.com/ktW8s0p.png"
+};
+
+function addLevel(type, name, difficulty, thumbnail, victors) {
+  const level = { name, difficulty, thumbnail, victors };
+  if (type === "Classic") classicLevels.push(level);
+  else platformerLevels.push(level);
+}
+
+function renderList(levels, containerId) {
   const container = document.getElementById(containerId);
+  container.innerHTML = "";
 
   levels.forEach((level, index) => {
-    const difficultyClass = level.difficulty.toLowerCase().split(" ")[0];
+
+    const face = difficultyFaces[level.difficulty] || "";
+    const faceHTML = face ? `<img class="difficulty-face" src="${face}">` : "";
 
     const victorsHTML = level.victors.map((name,i) => {
       if (i === 0) {
@@ -204,7 +214,7 @@ function createList(levels, containerId) {
       <img class="thumbnail" src="${level.thumbnail}">
       <div>
         <strong>${level.name}</strong><br>
-        Difficulty: <span class="${difficultyClass}">${level.difficulty}</span><br>
+        ${faceHTML} ${level.difficulty}<br>
         <button onclick="toggleVictors('${containerId}', ${index})">View Victors</button>
         <div class="victors" id="${containerId}-victors-${index}">
           ${victorsHTML}
@@ -239,8 +249,8 @@ function showPlatformer() {
   document.getElementById("classicList").classList.add("hidden");
 }
 
-createList(classicLevels, "classicList");
-createList(platformerLevels, "platformerList");
+renderList(classicLevels, "classicList");
+renderList(platformerLevels, "platformerList");
 
 </script>
 
