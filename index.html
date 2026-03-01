@@ -59,15 +59,9 @@
       border-radius: 14px;
       box-shadow: 0 0 15px red;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 20px;
       font-size: 22px;
-    }
-
-    .rank {
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 10px;
     }
 
     .thumbnail {
@@ -76,7 +70,18 @@
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 0 15px #00ff00;
-      margin-bottom: 15px;
+      flex-shrink: 0;
+    }
+
+    .level-info {
+      text-align: left;
+      flex: 1;
+    }
+
+    .rank {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     .difficulty {
@@ -128,7 +133,6 @@
     .hidden {
       display: none;
     }
-
   </style>
 </head>
 
@@ -147,20 +151,19 @@
 </div>
 
 <script>
-
 const difficultyFaces = {
   "Easy Demon": "😈",
   "Medium Demon": "👿",
   "Hard Demon": "🔥",
   "Insane Demon": "💀",
-  "Extreme Demon": "☠️"
+  "Extreme Demon": "☠️",
+  "GRANDPA Demon": "👹"
 };
 
 let classicLevels = [];
 let platformerLevels = [];
 
 /* ===== LEVELS ===== */
-
 addLevel("Classic","Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
 addLevel("Classic","B","Medium Demon","sddefault.jpg",["Timur","Kostia","Leon"]);
 addLevel("Classic","Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Timur","Kostia"]);
@@ -175,14 +178,13 @@ addLevel("Classic","Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
 addLevel("Classic","Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon"]);
 addLevel("Classic","The Lightning road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Leon"]);
 addLevel("Classic","The Nightmare","Easy Demon","Demon_Pack_3_-_The_Nightmare.webp",["Kostia","Timur","Leon","Ruslan"]);
-addLevel("Classic","Stereo Madness","Hard Demon","3135958522_preview_OIP.jpg",["Kostia","Timur","Ruslan","Leon","ilja"]);
+addLevel("Classic","Stereo Madness","GRANDPA Demon","3135958522_preview_OIP.jpg",["Kostia","Timur","Ruslan","Leon","ilja"]);
 
 addLevel("Platformer","Jetpack Trials","Easy Demon","maxresdefault.jpg",["Leon","Timur"]);
 
 /* ===== FUNCTIONS ===== */
-
 function addLevel(type,name,difficulty,thumbnail,victors){
-  const level = {name,difficulty,thumbnail,victors};
+  const level={name,difficulty,thumbnail,victors};
   if(type==="Classic") classicLevels.push(level);
   else platformerLevels.push(level);
 }
@@ -190,33 +192,27 @@ function addLevel(type,name,difficulty,thumbnail,victors){
 function renderList(levels,containerId){
   const container=document.getElementById(containerId);
   container.innerHTML="";
-
   levels.forEach((level,index)=>{
     const div=document.createElement("div");
     div.className="level";
-
-    const victorsHTML = level.victors.map((v,i)=>{
-      if(i===0){
-        return `${i+1}. <span class="crown">👑 ${v}</span>`;
-      } else {
-        return `${i+1}. 😈 ${v}`;
-      }
+    
+    const victorsHTML=level.victors.map((v,i)=>{
+      if(i===0) return `${i+1}. <span class="crown">👑 ${v}</span>`;
+      return `${i+1}. 😈 ${v}`;
     }).join("<br>");
 
     div.innerHTML=`
-      <div class="rank">#${index+1}</div>
-      <img class="thumbnail" src="${level.thumbnail}">
-      <strong>${level.name}</strong>
-      <div class="difficulty">
-        <span>${difficultyFaces[level.difficulty]}</span>
-        ${level.difficulty}
-      </div>
-      <button onclick="toggleVictors('${containerId}',${index})">Showcase</button>
-      <div class="victors" id="${containerId}-victors-${index}">
-        ${victorsHTML}
+      <div style="display:flex; align-items:center; gap:20px;">
+        <img class="thumbnail" src="${level.thumbnail}">
+        <div class="level-info">
+          <div class="rank">#${index+1}</div>
+          <strong>${level.name}</strong>
+          <div class="difficulty"><span>${difficultyFaces[level.difficulty]}</span>${level.difficulty}</div>
+          <button onclick="toggleVictors('${containerId}',${index})">Showcase</button>
+          <div class="victors" id="${containerId}-victors-${index}">${victorsHTML}</div>
+        </div>
       </div>
     `;
-
     container.appendChild(div);
   });
 }
@@ -244,6 +240,5 @@ renderList(classicLevels,"classicList");
 renderList(platformerLevels,"platformerList");
 
 </script>
-
 </body>
 </html>
