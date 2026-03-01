@@ -122,16 +122,46 @@
       width: 100%;
     }
 
+    /* Crown Pulse (unchanged) */
     .crown {
       color: #00ff00;
       font-weight: bold;
-      text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
       font-size: 22px;
+      animation: crownPulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes crownPulse {
+      0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+      50% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00; }
+      100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    }
+
+    /* 🔥 NEW: Gold #1 Global Player Glow */
+    .gold-player {
+      color: gold;
+      font-weight: bold;
+      animation: goldPulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes goldPulse {
+      0% { text-shadow: 0 0 5px gold, 0 0 10px gold; }
+      50% { text-shadow: 0 0 20px gold, 0 0 40px orange, 0 0 60px gold; }
+      100% { text-shadow: 0 0 5px gold, 0 0 10px gold; }
     }
 
     .hidden {
       display: none;
     }
+
+    .players {
+      background: #1e1e1e;
+      margin: 22px 0;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px gold;
+      font-size: 24px;
+    }
+
   </style>
 </head>
 
@@ -141,15 +171,30 @@
 
 <div class="top-buttons">
   <button class="switch-btn" onclick="showClassic()">😈 Classic</button>
+  <button class="switch-btn" onclick="showPlayers()">🏆 Best Players</button>
   <button class="switch-btn" onclick="showPlatformer()">🕹️ Platformer</button>
 </div>
 
 <div class="list-container">
   <div id="classicList"></div>
+
+  <div id="playersList" class="hidden">
+    <div class="players">
+      🥇 1. <span class="gold-player">Timur</span> <br><br>
+      🥈 2. Kostia <br><br>
+      🥉 3. Leon <br><br>
+      4️⃣ 4. Ruslan <br><br>
+      5️⃣ 5. ilja
+    </div>
+  </div>
+
   <div id="platformerList" class="hidden"></div>
 </div>
 
 <script>
+
+/* Everything below remains EXACTLY the same */
+
 const difficultyFaces = {
   "Easy Demon": "😈",
   "Medium Demon": "👿",
@@ -162,9 +207,9 @@ const difficultyFaces = {
 let classicLevels = [];
 let platformerLevels = [];
 
-/* ===== LEVELS ===== */
+/* LEVELS */
 addLevel("Classic","Nine Circles","Hard Demon","NINE.jpg",["Timur"]);
-addLevel("Classic","Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia",]);
+addLevel("Classic","Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
 addLevel("Classic","B","Medium Demon","sddefault",["Timur","Kostia","Leon"]);
 addLevel("Classic","Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Kostia","Timur"]);
 addLevel("Classic","Ispywithmylittleeye","Easy Demon","ISpyWithMyLittleEye_Ball.webp",["Leon","Timur"]);
@@ -177,11 +222,30 @@ addLevel("Classic","Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.
 addLevel("Classic","Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
 addLevel("Classic","platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon"]);
 addLevel("Classic","The Lightning road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Leon","Ruslan"]);
-addLevel("Classic","The Nightmare","Easy Demon","Demon_Pack_3_-_The_Nightma4e.webp",["Kostia","Timur","Ruslan","Leon",]);
+addLevel("Classic","The Nightmare","Easy Demon","Demon_Pack_3_-_The_Nightma4e.webp",["Kostia","Timur","Ruslan","Leon"]);
 
 addLevel("Platformer","Boss Rush 2","Easy Demon","maxresdefault.jpg",["Leon"]);
 
-/* ===== FUNCTIONS ===== */
+/* FUNCTIONS */
+
+function showPlayers(){
+  document.getElementById("classicList").classList.add("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
+  document.getElementById("playersList").classList.remove("hidden");
+}
+
+function showClassic(){
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("classicList").classList.remove("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
+}
+
+function showPlatformer(){
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("platformerList").classList.remove("hidden");
+  document.getElementById("classicList").classList.add("hidden");
+}
+
 function addLevel(type,name,difficulty,thumbnail,victors){
   const level={name,difficulty,thumbnail,victors};
   if(type==="Classic") classicLevels.push(level);
@@ -223,16 +287,6 @@ function toggleVictors(containerId,index){
   } else {
     section.style.maxHeight=section.scrollHeight+"px";
   }
-}
-
-function showClassic(){
-  document.getElementById("classicList").classList.remove("hidden");
-  document.getElementById("platformerList").classList.add("hidden");
-}
-
-function showPlatformer(){
-  document.getElementById("platformerList").classList.remove("hidden");
-  document.getElementById("classicList").classList.add("hidden");
 }
 
 renderList(classicLevels,"classicList");
