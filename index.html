@@ -84,7 +84,7 @@ button{
   margin-top:8px;
 }
 
-/* 🔥 NEW SLIDE ANIMATION */
+/* Sliding Victors */
 
 .victors{
   overflow:hidden;
@@ -174,9 +174,9 @@ button{
 
 <div class="list-container">
   <div id="classicList"></div>
+
   <div id="playersList" class="hidden">
     <div class="players">
-
       <div class="player" onclick="togglePlayer('p1')">
         🥇 1. <span class="gold-player">Timur</span>
         <div class="player-info" id="p1">
@@ -193,8 +193,32 @@ Hardest level beaten: Skeletal Shenanigans
         </div>
       </div>
 
+      <div class="player" onclick="togglePlayer('p3')">
+        🥉 3. Leon
+        <div class="player-info" id="p3">
+-
+Hardest level beaten: B
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p4')">
+        4️⃣ 4. Ruslan
+        <div class="player-info" id="p4">
+-
+Hardest level beaten: The Nightmare
+        </div>
+      </div>
+
+      <div class="player" onclick="togglePlayer('p5')">
+        5️⃣ 5. Ilja
+        <div class="player-info" id="p5">
+-
+Hardest level beaten: Retray
+        </div>
+      </div>
     </div>
   </div>
+
   <div id="platformerList" class="hidden"></div>
 </div>
 
@@ -219,10 +243,22 @@ function addPlatformer(name,difficulty,thumbnail,victors){
 platformerLevels.push({name,difficulty,thumbnail,victors});
 }
 
-/* CLASSIC */
+/* 🔥 ALL 15 CLASSIC LEVELS */
 addClassic("Nine Circles","Hard Demon","NINE.jpg",["Timur"]);
 addClassic("Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
 addClassic("B","Medium Demon","sddefault.jpg",["Timur","Kostia","Leon"]);
+addClassic("Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Kostia","Timur"]);
+addClassic("Ispywithmylittleeye","Easy Demon","ISpyWithMyLittleEye_Ball.webp",["Leon","Timur"]);
+addClassic("Clubstep","Easy Demon","clubstep.jpg",["Kostia","Timur"]);
+addClassic("X","Easy Demon","X.webp",["Kostia"]);
+addClassic("Is","Easy Demon","Screenshot_20260301-085959_Geode.png",["Kostia","Timur"]);
+addClassic("Shiver","Easy Demon","Screenshot_20260228-235631_Geode.png",["Leon","Kostia"]);
+addClassic("Speed Racer","Easy Demon","Screenshot_20260301-090411_Geode.png",["Leon","Timur"]);
+addClassic("Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.png",["Leon"]);
+addClassic("Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
+addClassic("Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon"]);
+addClassic("The Lightning Road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Leon","Ruslan"]);
+addClassic("The Nightmare","Easy Demon","Demon_Pack_3_-_The_Nightmare.webp",["Kostia","Timur","Ruslan","Leon"]);
 
 /* PLATFORMER */
 addPlatformer("Boss Rush 2","Easy Demon","boss.jpg",["Leon"]);
@@ -258,8 +294,7 @@ container.appendChild(div);
 }
 
 function toggleVictors(containerId,index){
-const section=document.getElementById(containerId+"-victors-"+index);
-section.classList.toggle("open");
+document.getElementById(containerId+"-victors-"+index).classList.toggle("open");
 }
 
 let currentlyOpen=null;
@@ -278,21 +313,21 @@ currentlyOpen=panel;
 }
 
 function showClassic(){
-document.getElementById("classicList").classList.remove("hidden");
-document.getElementById("playersList").classList.add("hidden");
-document.getElementById("platformerList").classList.add("hidden");
+classicList.classList.remove("hidden");
+playersList.classList.add("hidden");
+platformerList.classList.add("hidden");
 }
 
 function showPlayers(){
-document.getElementById("classicList").classList.add("hidden");
-document.getElementById("playersList").classList.remove("hidden");
-document.getElementById("platformerList").classList.add("hidden");
+classicList.classList.add("hidden");
+playersList.classList.remove("hidden");
+platformerList.classList.add("hidden");
 }
 
 function showPlatformer(){
-document.getElementById("classicList").classList.add("hidden");
-document.getElementById("playersList").classList.add("hidden");
-document.getElementById("platformerList").classList.remove("hidden");
+classicList.classList.add("hidden");
+playersList.classList.add("hidden");
+platformerList.classList.remove("hidden");
 }
 
 renderList(classicLevels,"classicList");
