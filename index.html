@@ -116,8 +116,7 @@ button{
 
 /* Coin Display Styling */
 .coin-badge {
-  color: gold;
-  font-weight: bold;
+  letter-spacing: 2px;
   margin-left: 5px;
   text-shadow: 0 0 8px gold;
 }
@@ -186,7 +185,7 @@ button{
   <div id="playersList" class="hidden">
     <div class="players">
       <div class="player" onclick="togglePlayer('p1')">
-        🥇 1. <span class="gold-player">Timur</span> <span class="coin-badge">🪙×12</span>
+        🥇 1. <span class="gold-player">Timur</span>
         <div class="player-info" id="p1">
 -
 Hardest Classic: Nine Circles
@@ -194,7 +193,7 @@ Hardest Classic: Nine Circles
       </div>
 
       <div class="player" onclick="togglePlayer('p2')">
-        🥈 2. Kostia <span class="coin-badge">🪙×8</span>
+        🥈 2. Kostia
         <div class="player-info" id="p2">
 -
 Hardest Classic: Skeletal Shenanigans
@@ -202,7 +201,7 @@ Hardest Classic: Skeletal Shenanigans
       </div>
 
       <div class="player" onclick="togglePlayer('p3')">
-        🥉 3. Leon <span class="coin-badge">🪙×5</span>
+        🥉 3. Leon
         <div class="player-info" id="p3">
 -
 Hardest Classic: B
@@ -210,7 +209,7 @@ Hardest Classic: B
       </div>
 
       <div class="player" onclick="togglePlayer('p4')">
-        4️⃣ 4. Ruslan <span class="coin-badge">🪙×3</span>
+        4️⃣ 4. Ruslan
         <div class="player-info" id="p4">
 -
 Hardest Classic: Shiver
@@ -218,10 +217,10 @@ Hardest Classic: Shiver
       </div>
 
       <div class="player" onclick="togglePlayer('p5')">
-        5️⃣ 5. Player 5 <span class="coin-badge">🪙×0</span>
+        5️⃣ 5. Player 5
         <div class="player-info" id="p5">
 -
-hardest Classic: Stereo Madness
+Hardest Classic: Stereo Madness
         </div>
       </div>
     </div>
@@ -251,28 +250,42 @@ function addPlatformer(name,difficulty,thumbnail,victors){
 platformerLevels.push({name,difficulty,thumbnail,victors});
 }
 
-/* 🔥 ALL 15 CLASSIC LEVELS (Using Name|Coins format) */
-addClassic("Nine Circles","Hard Demon","NINE.jpg",["Timur|3"]);
-addClassic("Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur|3","Kostia|3"]);
-addClassic("B","Medium Demon","sddefault.jpg",["Kostia|3","Leon|2"]);
-addClassic("Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Kostia|3","Timur|3"]);
-addClassic("Ispywithmylittleeye","Medium Demon","ISpyWithMyLittleEye_Ball.webp",["Leon|1","Timur|3","Kostia|3"]);
-addClassic("Clubstep","Easy Demon","clubstep.jpg",["Kostia|3"]);
-addClassic("X","Easy Demon","X.webp",["Kostia|2"]);
-addClassic("Is","Easy Demon","Screenshot_20260301-085959_Geode.png",["Kostia","Timur|1"]);
+/* 🔥 ALL CLASSIC LEVELS */
+addClassic("Nine Circles","Hard Demon","NINE.jpg",["Timur"]);
+addClassic("Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
+addClassic("B","Medium Demon","sddefault.jpg",["Kostia","Leon"]);
+addClassic("Deadlocked","Medium Demon","FmXs0V1aEAEtWAA.jpg",["Kostia","Timur"]);
+addClassic("Ispywithmylittleeye","Medium Demon","ISpyWithMyLittleEye_Ball.webp",["Leon","Timur","Kostia"]);
+addClassic("Clubstep","Easy Demon","clubstep.jpg",["Kostia"]);
+addClassic("X","Easy Demon","X.webp",["Kostia"]);
+addClassic("Is","Easy Demon","Screenshot_20260301-085959_Geode.png",["Kostia","Timur"]);
 addClassic("Maymory","Easy Demon","maxresdefault (2).jpg",["Kostia"]);
-addClassic("Shiver","Easy Demon","Screenshot_20260228-235631_Geode.png",["Leon|3","Timur|3","Kostia|3","Ruslan|3"]);
-addClassic("Speed Racer","Easy Demon","Screenshot_20260301-090411_Geode.png",["Leon|3","Kostia|3"]);
-addClassic("Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.png",["Leon|1"]);
-addClassic("Starpunk","Easy Demon","maxresdefault.jpg",["Kostia|3"]);
-addClassic("Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia|3","Timur|3","Leon|3","Ruslan|3"]);
-addClassic("The Lightning Road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia|1","Timur|3","Ruslan","Leon"]);
+addClassic("Shiver","Easy Demon","Screenshot_20260228-235631_Geode.png",["Leon","Timur","Kostia","Ruslan"]);
+addClassic("Speed Racer","Easy Demon","Screenshot_20260301-090411_Geode.png",["Leon","Kostia"]);
+addClassic("Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.png",["Leon"]);
+addClassic("Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
+addClassic("Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon","Ruslan"]);
+addClassic("The Lightning Road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Ruslan","Leon"]);
 addClassic("The Nightmare","Easy Demon","13519.webp",["Leon","Kostia","Ruslan","Timur"]);
 
-/* PLATFORMER */
-addPlatformer("Boss Rush 2","Easy Demon","boss.jpg",["Leon|3"]);
-addPlatformer("maethrillian","Easy Demon","mea.jpg",["Kostia|0"]);
-addPlatformer("would you rather","Easy Demon","hq720.jpg",["Kostia|3"]);
+/* 🆕 Extra Classic Placeholders (Change these to your real levels!) */
+addClassic("Change Me 1","Hard Demon","placeholder.jpg",["Timur"]);
+addClassic("Change Me 2","Insane Demon","placeholder.jpg",["Kostia"]);
+addClassic("Change Me 3","Extreme Demon","placeholder.jpg",["Leon"]);
+addClassic("Change Me 4","Easy Demon","placeholder.jpg",[]);
+addClassic("Change Me 5","Medium Demon","placeholder.jpg",[]);
+
+/* 🕹️ PLATFORMER LEVELS */
+addPlatformer("Boss Rush 2","Easy Demon","boss.jpg",["Leon"]);
+addPlatformer("maethrillian","Easy Demon","mea.jpg",["Kostia"]);
+addPlatformer("would you rather","Easy Demon","hq720.jpg",["Kostia"]);
+
+/* 🆕 Extra Platformer Placeholders (Change these to your real levels!) */
+addPlatformer("Platformer Extra 1","Medium Demon","placeholder.jpg",["Kostia"]);
+addPlatformer("Platformer Extra 2","Hard Demon","placeholder.jpg",["Timur"]);
+addPlatformer("Platformer Extra 3","Insane Demon","placeholder.jpg",[]);
+addPlatformer("Platformer Extra 4","Extreme Demon","placeholder.jpg",[]);
+addPlatformer("Platformer Extra 5","Easy Demon","placeholder.jpg",[]);
 
 function renderList(levels,containerId){
 const container=document.getElementById(containerId);
@@ -282,13 +295,12 @@ const div=document.createElement("div");
 div.className="level";
 
 const victorsHTML=level.victors.map((v,i)=>{
-// Split player name and coin count
 const parts = v.split("|");
 const playerName = parts[0];
 const coinCount = parts[1] ? parseInt(parts[1]) : 0;
 
-// Coin rendering string
-const coinHTML = coinCount > 0 ? ` <span class="coin-badge">🪙×${coinCount}</span>` : '';
+// This repeats the coin emoji based on the number!
+const coinHTML = coinCount > 0 ? ` <span class="coin-badge">${'🪙'.repeat(coinCount)}</span>` : '';
 
 if(i===0) return `${i+1}. <span class="crown">👑 ${playerName}</span>${coinHTML}`;
 return `${i+1}. 😈 ${playerName}${coinHTML}`;
@@ -342,8 +354,6 @@ platformerList.classList.add("hidden");
 }
 
 function showPlatformer(){
-classicList.classList.add("hidden");
-playersList.classList.with
 classicList.classList.add("hidden");
 playersList.classList.add("hidden");
 platformerList.classList.remove("hidden");
