@@ -158,6 +158,8 @@ button{
   border-radius:10px;
   padding:0 15px;
   text-align:left;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .player-info.open{
@@ -184,45 +186,47 @@ button{
 
   <div id="playersList" class="hidden">
     <div class="players">
+      
       <div class="player" onclick="togglePlayer('p1')">
         🥇 1. <span class="gold-player">Timur</span>
         <div class="player-info" id="p1">
--
-Hardest Classic: Nine Circles
+          🔹 <strong>Hardest Classic:</strong> Nine Circles<br>
+          🕹️ <strong>Hardest Platformer:</strong> Platformer Extra 2
         </div>
       </div>
 
       <div class="player" onclick="togglePlayer('p2')">
         🥈 2. Kostia
         <div class="player-info" id="p2">
--
-Hardest Classic: Skeletal Shenanigans
+          🔹 <strong>Hardest Classic:</strong> Skeletal Shenanigans<br>
+          🕹️ <strong>Hardest Platformer:</strong> Platformer Extra 1
         </div>
       </div>
 
       <div class="player" onclick="togglePlayer('p3')">
         🥉 3. Leon
         <div class="player-info" id="p3">
--
-Hardest Classic: B
+          🔹 <strong>Hardest Classic:</strong> B<br>
+          🕹️ <strong>Hardest Platformer:</strong> Boss Rush 2
         </div>
       </div>
 
       <div class="player" onclick="togglePlayer('p4')">
         4️⃣ 4. Ruslan
         <div class="player-info" id="p4">
--
-Hardest Classic: Shiver
+          🔹 <strong>Hardest Classic:</strong> Shiver<br>
+          🕹️ <strong>Hardest Platformer:</strong> None
         </div>
       </div>
 
       <div class="player" onclick="togglePlayer('p5')">
         5️⃣ 5. Player 5
         <div class="player-info" id="p5">
--
-Hardest Classic: Stereo Madness
+          🔹 <strong>Hardest Classic:</strong> Stereo Madness<br>
+          🕹️ <strong>Hardest Platformer:</strong> None
         </div>
       </div>
+
     </div>
   </div>
 
@@ -268,7 +272,7 @@ addClassic("Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia",
 addClassic("The Lightning Road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Ruslan","Leon"]);
 addClassic("The Nightmare","Easy Demon","13519.webp",["Leon","Kostia","Ruslan","Timur"]);
 
-/* 🆕 Extra Classic Placeholders (Change these to your real levels!) */
+/* Extra Classic Placeholders */
 addClassic("Change Me 1","Hard Demon","placeholder.jpg",["Timur"]);
 addClassic("Change Me 2","Insane Demon","placeholder.jpg",["Kostia"]);
 addClassic("Change Me 3","Extreme Demon","placeholder.jpg",["Leon"]);
@@ -280,7 +284,7 @@ addPlatformer("Boss Rush 2","Easy Demon","boss.jpg",["Leon"]);
 addPlatformer("maethrillian","Easy Demon","mea.jpg",["Kostia"]);
 addPlatformer("would you rather","Easy Demon","hq720.jpg",["Kostia"]);
 
-/* 🆕 Extra Platformer Placeholders (Change these to your real levels!) */
+/* Extra Platformer Placeholders */
 addPlatformer("Platformer Extra 1","Medium Demon","placeholder.jpg",["Kostia"]);
 addPlatformer("Platformer Extra 2","Hard Demon","placeholder.jpg",["Timur"]);
 addPlatformer("Platformer Extra 3","Insane Demon","placeholder.jpg",[]);
@@ -299,7 +303,6 @@ const parts = v.split("|");
 const playerName = parts[0];
 const coinCount = parts[1] ? parseInt(parts[1]) : 0;
 
-// This repeats the coin emoji based on the number!
 const coinHTML = coinCount > 0 ? ` <span class="coin-badge">${'🪙'.repeat(coinCount)}</span>` : '';
 
 if(i===0) return `${i+1}. <span class="crown">👑 ${playerName}</span>${coinHTML}`;
