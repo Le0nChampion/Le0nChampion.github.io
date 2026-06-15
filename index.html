@@ -168,6 +168,14 @@ button{
   padding:15px;
 }
 
+/* Point Styling */
+.pts-badge {
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 0 0 5px #00ff00;
+}
+
 </style>
 </head>
 
@@ -185,49 +193,7 @@ button{
   <div id="classicList"></div>
 
   <div id="playersList" class="hidden">
-    <div class="players">
-      
-      <div class="player" onclick="togglePlayer('p1')">
-        🥇 1. <span class="gold-player">Timur</span>
-        <div class="player-info" id="p1">
-          🔹 <strong>Hardest Classic:</strong> Nine Circles<br>
-          🕹️ <strong>Hardest Platformer:</strong> Idk
-        </div>
-      </div>
-
-      <div class="player" onclick="togglePlayer('p2')">
-        🥈 2. Kostia
-        <div class="player-info" id="p2">
-          🔹 <strong>Hardest Classic:</strong> COLOR CRUSHER<br>
-          🕹️ <strong>Hardest Platformer:</strong> Idk
-        </div>
-      </div>
-
-      <div class="player" onclick="togglePlayer('p3')">
-        🥉 3. Leon
-        <div class="player-info" id="p3">
-          🔹 <strong>Hardest Classic:</strong> B<br>
-          🕹️ <strong>Hardest Platformer:</strong> Boss Rush 2
-        </div>
-      </div>
-
-      <div class="player" onclick="togglePlayer('p4')">
-        4️⃣ 4. Ruslan
-        <div class="player-info" id="p4">
-          🔹 <strong>Hardest Classic:</strong> Shiver<br>
-          🕹️ <strong>Hardest Platformer:</strong> None
-        </div>
-      </div>
-
-      <div class="player" onclick="togglePlayer('p5')">
-        5️⃣ 5. Player 5
-        <div class="player-info" id="p5">
-          🔹 <strong>Hardest Classic:</strong> Stereo Madness<br>
-          🕹️ <strong>Hardest Platformer:</strong> None
-        </div>
-      </div>
-
-    </div>
+    <div class="players" id="playersContainer"></div>
   </div>
 
   <div id="platformerList" class="hidden"></div>
@@ -236,132 +202,205 @@ button{
 <script>
 
 const difficultyFaces={
-"Easy Demon":"😈",
-"Medium Demon":"👿",
-"Hard Demon":"🔥",
-"Insane Demon":"💀",
-"Extreme Demon":"☠️"
+  "Easy Demon":"😈",
+  "Medium Demon":"👿",
+  "Hard Demon":"🔥",
+  "Insane Demon":"💀",
+  "Extreme Demon":"☠️"
 };
 
 let classicLevels=[];
 let platformerLevels=[];
 
-function addClassic(name,difficulty,thumbnail,victors){
-classicLevels.push({name,difficulty,thumbnail,victors});
+// Notice the new 'points' parameter in these functions!
+function addClassic(name, difficulty, points, thumbnail, victors){
+  classicLevels.push({name, difficulty, points, thumbnail, victors});
 }
 
-function addPlatformer(name,difficulty,thumbnail,victors){
-platformerLevels.push({name,difficulty,thumbnail,victors});
+function addPlatformer(name, difficulty, points, thumbnail, victors){
+  platformerLevels.push({name, difficulty, points, thumbnail, victors});
 }
 
 /* 🔥 ALL CLASSIC LEVELS */
-addClassic("Nine Circles","Hard Demon","NINE.jpg",["Timur"]);
-addClassic("COLOR CRUSHER","Medium Demon","Screenshot_20260614-202259_YouTube.png",["Kostia"]);
-addClassic("Skeletal Shenanigans","Medium Demon","skeletal.jpg",["Timur","Kostia"]);
-addClassic("B","Medium Demon","sddefault.jpg",["Kostia","Leon"]);
-addClassic("Ebb","Medium Demon","Screenshot_20260614-202840_YouTube.png",["Kostia"]);
-addClassic("bims level","Medium Demon","Screenshot_20260614-203212_YouTube.png",["Kostia"]);
-addClassic("Deadlocked","Easy Demon","FmXs0V1aEAEtWAA.jpg",["Kostia","Timur"]);
-addClassic("Ispywithmylittleeye","Easy Demon","ISpyWithMyLittleEye_Ball.webp",["Leon","Timur","Kostia"]);
-addClassic("Clubstep","Easy Demon","clubstep.jpg",["Kostia"]);
-addClassic("X","Easy Demon","X.webp",["Kostia"]);
-addClassic("Is","Easy Demon","Screenshot_20260301-085959_Geode.png",["Kostia","Timur"]);
-addClassic("Maymory","Easy Demon","maxresdefault (2).jpg",["Kostia"]);
-addClassic("Change of Scene","Easy Demon","Screenshot_20260614-193906_YouTube.png",["Kostia"]);
-addClassic("FUNKED UP","Easy Demon","Screenshot_20260613-182805_YouTube.png",["Kostia"]);
-addClassic("Speed Racer","Easy Demon","Screenshot_20260301-090411_Geode.png",["Leon","Kostia"]);
-addClassic("Weird","Easy Demon","Screenshot_20260613-182015_YouTube.png",["Kostia"]);
-addClassic("Starpunk","Easy Demon","maxresdefault.jpg",["Kostia"]);
-addClassic("Shiver","Easy Demon","Screenshot_20260228-235631_Geode.png",["Leon","Timur","Kostia","Ruslan"]);
-addClassic("Demon Mixed","Easy Demon","Screenshot_20260301-121527_Geode.png",["Leon"]);
-addClassic("Platinum Adventure","Easy Demon","PlatinumAdventure.webp",["Kostia","Timur","Leon","Ruslan"]);
-addClassic("The Lightning Road","Easy Demon","Screenshot_20260301-103353_Geode.png",["Kostia","Timur","Ruslan","Leon"]);
-addClassic("The Nightmare","Easy Demon","13519.webp",["Leon","Kostia","Ruslan","Timur"]);
+// Edit the number right after the difficulty to change the points for that specific level
+addClassic("Nine Circles", "Hard Demon", 75, "NINE.jpg", ["Timur"]);
+addClassic("COLOR CRUSHER", "Medium Demon", 30, "Screenshot_20260614-202259_YouTube.png", ["Kostia"]);
+addClassic("Skeletal Shenanigans", "Medium Demon", 35, "skeletal.jpg", ["Timur","Kostia"]);
+addClassic("B", "Medium Demon", 25, "sddefault.jpg", ["Kostia","Leon"]);
+addClassic("Ebb", "Medium Demon", 40, "Screenshot_20260614-202840_YouTube.png", ["Kostia"]);
+addClassic("bims level", "Medium Demon", 32, "Screenshot_20260614-203212_YouTube.png", ["Kostia"]);
+addClassic("Deadlocked", "Easy Demon", 20, "FmXs0V1aEAEtWAA.jpg", ["Kostia","Timur"]);
+addClassic("Ispywithmylittleeye", "Easy Demon", 15, "ISpyWithMyLittleEye_Ball.webp", ["Leon","Timur","Kostia"]);
+addClassic("Clubstep", "Easy Demon", 18, "clubstep.jpg", ["Kostia"]);
+addClassic("X", "Easy Demon", 16, "X.webp", ["Kostia"]);
+addClassic("Is", "Easy Demon", 14, "Screenshot_20260301-085959_Geode.png", ["Kostia","Timur"]);
+addClassic("Maymory", "Easy Demon", 12, "maxresdefault (2).jpg", ["Kostia"]);
+addClassic("Change of Scene", "Easy Demon", 19, "Screenshot_20260614-193906_YouTube.png", ["Kostia"]);
+addClassic("FUNKED UP", "Easy Demon", 10, "Screenshot_20260613-182805_YouTube.png", ["Kostia"]);
+addClassic("Speed Racer", "Easy Demon", 11, "Screenshot_20260301-090411_Geode.png", ["Leon","Kostia"]);
+addClassic("Weird", "Easy Demon", 9, "Screenshot_20260613-182015_YouTube.png", ["Kostia"]);
+addClassic("Starpunk", "Easy Demon", 13, "maxresdefault.jpg", ["Kostia"]);
+addClassic("Shiver", "Easy Demon", 8, "Screenshot_20260228-235631_Geode.png", ["Leon","Timur","Kostia","Ruslan"]);
+addClassic("Demon Mixed", "Easy Demon", 5, "Screenshot_20260301-121527_Geode.png", ["Leon"]);
+addClassic("Platinum Adventure", "Easy Demon", 6, "PlatinumAdventure.webp", ["Kostia","Timur","Leon","Ruslan"]);
+addClassic("The Lightning Road", "Easy Demon", 4, "Screenshot_20260301-103353_Geode.png", ["Kostia","Timur","Ruslan","Leon"]);
+addClassic("The Nightmare", "Easy Demon", 3, "13519.webp", ["Leon","Kostia","Ruslan","Timur"]);
+
 /* 🕹️ PLATFORMER LEVELS */
-addPlatformer("Boss Rush 2","Easy Demon","boss.jpg",["Leon"]);
-addPlatformer("maethrillian","Easy Demon","mea.jpg",["Kostia"]);
-addPlatformer("would you rather","Easy Demon","hq720.jpg",["Kostia"]);
+addPlatformer("Boss Rush 2", "Easy Demon", 15, "boss.jpg", ["Leon"]);
+addPlatformer("maethrillian", "Easy Demon", 12, "mea.jpg", ["Kostia"]);
+addPlatformer("would you rather", "Easy Demon", 10, "hq720.jpg", ["Kostia"]);
 
 /* Extra Platformer Placeholders */
-addPlatformer("Platformer Extra 1","Medium Demon","placeholder.jpg",["Kostia"]);
-addPlatformer("Platformer Extra 2","Hard Demon","placeholder.jpg",["Timur"]);
-addPlatformer("Platformer Extra 3","Insane Demon","placeholder.jpg",[]);
-addPlatformer("Platformer Extra 4","Extreme Demon","placeholder.jpg",[]);
-addPlatformer("Platformer Extra 5","Easy Demon","placeholder.jpg",[]);
+addPlatformer("Platformer Extra 1", "Medium Demon", 30, "placeholder.jpg", ["Kostia"]);
+addPlatformer("Platformer Extra 2", "Hard Demon", 60, "placeholder.jpg", ["Timur"]);
+addPlatformer("Platformer Extra 3", "Insane Demon", 120, "placeholder.jpg", []);
+addPlatformer("Platformer Extra 4", "Extreme Demon", 300, "placeholder.jpg", []);
+addPlatformer("Platformer Extra 5", "Easy Demon", 10, "placeholder.jpg", []);
+
 
 function renderList(levels,containerId){
-const container=document.getElementById(containerId);
-container.innerHTML="";
-levels.forEach((level,index)=>{
-const div=document.createElement("div");
-div.className="level";
+  const container=document.getElementById(containerId);
+  container.innerHTML="";
+  levels.forEach((level,index)=>{
+    const div=document.createElement("div");
+    div.className="level";
 
-const victorsHTML=level.victors.map((v,i)=>{
-const parts = v.split("|");
-const playerName = parts[0];
-const coinCount = parts[1] ? parseInt(parts[1]) : 0;
+    const victorsHTML=level.victors.map((v,i)=>{
+      const parts = v.split("|");
+      const playerName = parts[0];
+      const coinCount = parts[1] ? parseInt(parts[1]) : 0;
+      const coinHTML = coinCount > 0 ? ` <span class="coin-badge">${'🪙'.repeat(coinCount)}</span>` : '';
 
-const coinHTML = coinCount > 0 ? ` <span class="coin-badge">${'🪙'.repeat(coinCount)}</span>` : '';
+      if(i===0) return `${i+1}. <span class="crown">👑 ${playerName}</span>${coinHTML}`;
+      return `${i+1}. 😈 ${playerName}${coinHTML}`;
+    }).join("<br>");
 
-if(i===0) return `${i+1}. <span class="crown">👑 ${playerName}</span>${coinHTML}`;
-return `${i+1}. 😈 ${playerName}${coinHTML}`;
-}).join("<br>");
+    // Outputting the exact points from the level object
+    div.innerHTML=`
+    <img class="thumbnail" src="${level.thumbnail}">
+    <div class="level-info">
+    <div class="rank">#${index+1}</div>
+    <strong>${level.name}</strong><br>
+    ${difficultyFaces[level.difficulty]} ${level.difficulty} <span style="color:gray;">(${level.points} pts)</span><br>
+    <button onclick="toggleVictors('${containerId}',${index})">Victors</button>
+    <div class="victors" id="${containerId}-victors-${index}">
+    ${victorsHTML}
+    </div>
+    </div>
+    `;
+    container.appendChild(div);
+  });
+}
 
-div.innerHTML=`
-<img class="thumbnail" src="${level.thumbnail}">
-<div class="level-info">
-<div class="rank">#${index+1}</div>
-<strong>${level.name}</strong><br>
-${difficultyFaces[level.difficulty]} ${level.difficulty}<br>
-<button onclick="toggleVictors('${containerId}',${index})">Victors</button>
-<div class="victors" id="${containerId}-victors-${index}">
-${victorsHTML}
-</div>
-</div>
-`;
-container.appendChild(div);
-});
+function calculateAndRenderPlayers() {
+  const stats = {};
+
+  function processLevelData(levelsArray, isPlatformer) {
+    levelsArray.forEach(level => {
+      // We grab the exact points from the level here
+      const points = level.points || 0;
+      
+      level.victors.forEach(v => {
+        const playerName = v.split("|")[0]; 
+        
+        if (!stats[playerName]) {
+          stats[playerName] = { 
+            totalPoints: 0, 
+            hardestClassic: "None", maxClassicPts: 0, 
+            hardestPlatformer: "None", maxPlatformerPts: 0 
+          };
+        }
+        
+        stats[playerName].totalPoints += points;
+
+        if (isPlatformer) {
+          if (points > stats[playerName].maxPlatformerPts) {
+            stats[playerName].maxPlatformerPts = points;
+            stats[playerName].hardestPlatformer = level.name;
+          }
+        } else {
+          if (points > stats[playerName].maxClassicPts) {
+            stats[playerName].maxClassicPts = points;
+            stats[playerName].hardestClassic = level.name;
+          }
+        }
+      });
+    });
+  }
+
+  processLevelData(classicLevels, false);
+  processLevelData(platformerLevels, true);
+
+  const sortedPlayers = Object.entries(stats)
+    .map(([name, data]) => ({ name, ...data }))
+    .sort((a, b) => b.totalPoints - a.totalPoints);
+
+  const container = document.getElementById("playersContainer");
+  container.innerHTML = "";
+
+  const emojis = ["🥇 1.", "🥈 2.", "🥉 3.", "4️⃣ 4.", "5️⃣ 5.", "6️⃣ 6.", "7️⃣ 7.", "8️⃣ 8.", "9️⃣ 9.", "🔟 10."];
+
+  sortedPlayers.forEach((player, index) => {
+    const div = document.createElement("div");
+    div.className = "player";
+    div.setAttribute("onclick", `togglePlayer('p${index}')`);
+
+    const rankPrefix = emojis[index] || `${index + 1}.`;
+    const nameClass = index === 0 ? 'class="gold-player"' : '';
+
+    div.innerHTML = `
+      ${rankPrefix} <span ${nameClass}>${player.name}</span> - <span class="pts-badge">${player.totalPoints} pts</span>
+      <div class="player-info" id="p${index}">
+        🔹 <strong>Hardest Classic:</strong> ${player.hardestClassic}<br>
+        🕹️ <strong>Hardest Platformer:</strong> ${player.hardestPlatformer}
+      </div>
+    `;
+    
+    container.appendChild(div);
+  });
 }
 
 function toggleVictors(containerId,index){
-document.getElementById(containerId+"-victors-"+index).classList.toggle("open");
+  document.getElementById(containerId+"-victors-"+index).classList.toggle("open");
 }
 
 let currentlyOpen=null;
 function togglePlayer(id){
-const panel=document.getElementById(id);
-if(currentlyOpen===panel){
-panel.classList.remove("open");
-currentlyOpen=null;
-return;
-}
-if(currentlyOpen){
-currentlyOpen.classList.remove("open");
-}
-panel.classList.add("open");
-currentlyOpen=panel;
+  const panel=document.getElementById(id);
+  if(currentlyOpen===panel){
+    panel.classList.remove("open");
+    currentlyOpen=null;
+    return;
+  }
+  if(currentlyOpen){
+    currentlyOpen.classList.remove("open");
+  }
+  panel.classList.add("open");
+  currentlyOpen=panel;
 }
 
 function showClassic(){
-classicList.classList.remove("hidden");
-playersList.classList.add("hidden");
-platformerList.classList.add("hidden");
+  document.getElementById("classicList").classList.remove("hidden");
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
 }
 
 function showPlayers(){
-classicList.classList.add("hidden");
-playersList.classList.remove("hidden");
-platformerList.classList.add("hidden");
+  document.getElementById("classicList").classList.add("hidden");
+  document.getElementById("playersList").classList.remove("hidden");
+  document.getElementById("platformerList").classList.add("hidden");
 }
 
 function showPlatformer(){
-classicList.classList.add("hidden");
-playersList.classList.add("hidden");
-platformerList.classList.remove("hidden");
+  document.getElementById("classicList").classList.add("hidden");
+  document.getElementById("playersList").classList.add("hidden");
+  document.getElementById("platformerList").classList.remove("hidden");
 }
 
 renderList(classicLevels,"classicList");
 renderList(platformerLevels,"platformerList");
+calculateAndRenderPlayers();
 
 </script>
 
