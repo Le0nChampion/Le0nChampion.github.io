@@ -212,7 +212,6 @@ const difficultyFaces={
 let classicLevels=[];
 let platformerLevels=[];
 
-// Notice the new 'points' parameter in these functions!
 function addClassic(name, difficulty, points, thumbnail, victors){
   classicLevels.push({name, difficulty, points, thumbnail, victors});
 }
@@ -222,41 +221,41 @@ function addPlatformer(name, difficulty, points, thumbnail, victors){
 }
 
 /* 🔥 ALL CLASSIC LEVELS */
-// Edit the number right after the difficulty to change the points for that specific level
-addClassic("Nine Circles", "Hard Demon", 75, "NINE.jpg", ["Timur"]);
-addClassic("COLOR CRUSHER", "Medium Demon", 30, "Screenshot_20260614-202259_YouTube.png", ["Kostia"]);
-addClassic("Skeletal Shenanigans", "Medium Demon", 35, "skeletal.jpg", ["Timur","Kostia"]);
-addClassic("B", "Medium Demon", 25, "sddefault.jpg", ["Kostia","Leon"]);
-addClassic("Ebb", "Medium Demon", 40, "Screenshot_20260614-202840_YouTube.png", ["Kostia"]);
-addClassic("bims level", "Medium Demon", 32, "Screenshot_20260614-203212_YouTube.png", ["Kostia"]);
-addClassic("Deadlocked", "Easy Demon", 20, "FmXs0V1aEAEtWAA.jpg", ["Kostia","Timur"]);
-addClassic("Ispywithmylittleeye", "Easy Demon", 1.5, "ISpyWithMyLittleEye_Ball.webp", ["Leon","Timur","Kostia"]);
-addClassic("Clubstep", "Easy Demon", 0, "clubstep.jpg", ["Kostia"]);
-addClassic("X", "Easy Demon", 3.12, "X.webp", ["Kostia"]);
-addClassic("Change of Scene", "Easy Demon", 3.04, "Screenshot_20260614-193906_YouTube.png", ["Kostia"]);
-addClassic("FUNKED UP", "Easy Demon", 2.09, "Screenshot_20260613-182805_YouTube.png", ["Kostia"]);
-addClassic("Maymory", "Easy Demon", 2.03, "maxresdefault (2).jpg", ["Kostia"]);
-addClassic("Weird", "Easy Demon", 1.87, "Screenshot_20260613-182015_YouTube.png", ["Kostia"]);
-addClassic("Speed Racer", "Easy Demon", 1.86, "Screenshot_20260301-090411_Geode.png", ["Leon","Kostia"]);
-addClassic("Is", "Easy Demon", 1.35, "Screenshot_20260301-085959_Geode.png", ["Kostia","Timur"]);
-addClassic("Starpunk", "Easy Demon", 1.3, "maxresdefault.jpg", ["Kostia"]);
-addClassic("Shiver", "Easy Demon", 1.15, "Screenshot_20260228-235631_Geode.png", ["Leon","Timur","Kostia","Ruslan"]);
-addClassic("Platinum Adventure", "Easy Demon", 1.13, "PlatinumAdventure.webp", ["Kostia","Timur","Leon","Ruslan"]);
-addClassic("Demon Mixed", "Easy Demon", 1.1, "Screenshot_20260301-121527_Geode.png", ["Leon"]);
-addClassic("The Lightning Road", "Easy Demon", 1.05, "Screenshot_20260301-103353_Geode.png", ["Kostia","Timur","Ruslan","Leon"]);
-addClassic("The Nightmare", "Easy Demon", 1.04, "13519.webp", ["Leon","Kostia","Ruslan","Timur"]);
+// Decimals work perfectly here now! 
+addClassic("Nine Circles", "Hard Demon", 1.04, "NINE.jpg", ["Timur"]);
+addClassic("COLOR CRUSHER", "Medium Demon", 2.5, "Screenshot_20260614-202259_YouTube.png", ["Kostia"]);
+addClassic("Skeletal Shenanigans", "Medium Demon", 1.8, "skeletal.jpg", ["Timur","Kostia"]);
+addClassic("B", "Medium Demon", 1.25, "sddefault.jpg", ["Kostia","Leon"]);
+addClassic("Ebb", "Medium Demon", 2.1, "Screenshot_20260614-202840_YouTube.png", ["Kostia"]);
+addClassic("bims level", "Medium Demon", 1.95, "Screenshot_20260614-203212_YouTube.png", ["Kostia"]);
+addClassic("Deadlocked", "Easy Demon", 0.9, "FmXs0V1aEAEtWAA.jpg", ["Kostia","Timur"]);
+addClassic("Ispywithmylittleeye", "Easy Demon", 0.75, "ISpyWithMyLittleEye_Ball.webp", ["Leon","Timur","Kostia"]);
+addClassic("Clubstep", "Easy Demon", 0.8, "clubstep.jpg", ["Kostia"]);
+addClassic("X", "Easy Demon", 0.7, "X.webp", ["Kostia"]);
+addClassic("Is", "Easy Demon", 0.65, "Screenshot_20260301-085959_Geode.png", ["Kostia","Timur"]);
+addClassic("Maymory", "Easy Demon", 0.6, "maxresdefault (2).jpg", ["Kostia"]);
+addClassic("Change of Scene", "Easy Demon", 0.85, "Screenshot_20260614-193906_YouTube.png", ["Kostia"]);
+addClassic("FUNKED UP", "Easy Demon", 0.5, "Screenshot_20260613-182805_YouTube.png", ["Kostia"]);
+addClassic("Speed Racer", "Easy Demon", 0.55, "Screenshot_20260301-090411_Geode.png", ["Leon","Kostia"]);
+addClassic("Weird", "Easy Demon", 0.45, "Screenshot_20260613-182015_YouTube.png", ["Kostia"]);
+addClassic("Starpunk", "Easy Demon", 0.6, "maxresdefault.jpg", ["Kostia"]);
+addClassic("Shiver", "Easy Demon", 0.4, "Screenshot_20260228-235631_Geode.png", ["Leon","Timur","Kostia","Ruslan"]);
+addClassic("Demon Mixed", "Easy Demon", 0.2, "Screenshot_20260301-121527_Geode.png", ["Leon"]);
+addClassic("Platinum Adventure", "Easy Demon", 0.3, "PlatinumAdventure.webp", ["Kostia","Timur","Leon","Ruslan"]);
+addClassic("The Lightning Road", "Easy Demon", 0.15, "Screenshot_20260301-103353_Geode.png", ["Kostia","Timur","Ruslan","Leon"]);
+addClassic("The Nightmare", "Easy Demon", 0.1, "13519.webp", ["Leon","Kostia","Ruslan","Timur"]);
 
 /* 🕹️ PLATFORMER LEVELS */
-addPlatformer("Boss Rush 2", "Easy Demon", 15, "boss.jpg", ["Leon"]);
-addPlatformer("maethrillian", "Easy Demon", 12, "mea.jpg", ["Kostia"]);
-addPlatformer("would you rather", "Easy Demon", 10, "hq720.jpg", ["Kostia"]);
+addPlatformer("Boss Rush 2", "Easy Demon", 0.75, "boss.jpg", ["Leon"]);
+addPlatformer("maethrillian", "Easy Demon", 0.6, "mea.jpg", ["Kostia"]);
+addPlatformer("would you rather", "Easy Demon", 0.5, "hq720.jpg", ["Kostia"]);
 
 /* Extra Platformer Placeholders */
-addPlatformer("Platformer Extra 1", "Medium Demon", 30, "placeholder.jpg", ["Kostia"]);
-addPlatformer("Platformer Extra 2", "Hard Demon", 60, "placeholder.jpg", ["Timur"]);
-addPlatformer("Platformer Extra 3", "Insane Demon", 120, "placeholder.jpg", []);
-addPlatformer("Platformer Extra 4", "Extreme Demon", 300, "placeholder.jpg", []);
-addPlatformer("Platformer Extra 5", "Easy Demon", 10, "placeholder.jpg", []);
+addPlatformer("Platformer Extra 1", "Medium Demon", 1.5, "placeholder.jpg", ["Kostia"]);
+addPlatformer("Platformer Extra 2", "Hard Demon", 3.2, "placeholder.jpg", ["Timur"]);
+addPlatformer("Platformer Extra 3", "Insane Demon", 5.0, "placeholder.jpg", []);
+addPlatformer("Platformer Extra 4", "Extreme Demon", 10.0, "placeholder.jpg", []);
+addPlatformer("Platformer Extra 5", "Easy Demon", 0.5, "placeholder.jpg", []);
 
 
 function renderList(levels,containerId){
@@ -276,13 +275,13 @@ function renderList(levels,containerId){
       return `${i+1}. 😈 ${playerName}${coinHTML}`;
     }).join("<br>");
 
-    // Outputting the exact points from the level object
+    // Uses parseFloat to display exact decimal points safely
     div.innerHTML=`
     <img class="thumbnail" src="${level.thumbnail}">
     <div class="level-info">
     <div class="rank">#${index+1}</div>
     <strong>${level.name}</strong><br>
-    ${difficultyFaces[level.difficulty]} ${level.difficulty} <span style="color:gray;">(${level.points} pts)</span><br>
+    ${difficultyFaces[level.difficulty]} ${level.difficulty} <span style="color:gray;">(${parseFloat(level.points)} pts)</span><br>
     <button onclick="toggleVictors('${containerId}',${index})">Victors</button>
     <div class="victors" id="${containerId}-victors-${index}">
     ${victorsHTML}
@@ -298,8 +297,8 @@ function calculateAndRenderPlayers() {
 
   function processLevelData(levelsArray, isPlatformer) {
     levelsArray.forEach(level => {
-      // We grab the exact points from the level here
-      const points = level.points || 0;
+      // CRITICAL FIX: Forces the point values to remain exact decimals
+      const points = parseFloat(level.points) || 0;
       
       level.victors.forEach(v => {
         const playerName = v.split("|")[0]; 
@@ -349,8 +348,11 @@ function calculateAndRenderPlayers() {
     const rankPrefix = emojis[index] || `${index + 1}.`;
     const nameClass = index === 0 ? 'class="gold-player"' : '';
 
+    // FIX: .toFixed(2) prevents messy computer math issues, Number() cleans up trailing zeros
+    const cleanDisplayPoints = Number(player.totalPoints.toFixed(2));
+
     div.innerHTML = `
-      ${rankPrefix} <span ${nameClass}>${player.name}</span> - <span class="pts-badge">${player.totalPoints} pts</span>
+      ${rankPrefix} <span ${nameClass}>${player.name}</span> - <span class="pts-badge">${cleanDisplayPoints} pts</span>
       <div class="player-info" id="p${index}">
         🔹 <strong>Hardest Classic:</strong> ${player.hardestClassic}<br>
         🕹️ <strong>Hardest Platformer:</strong> ${player.hardestPlatformer}
